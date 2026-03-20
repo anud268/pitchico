@@ -45,8 +45,11 @@ export default function ProductPage() {
       <div className="bg-white rounded-2xl shadow-xl p-6 md:p-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           <div>
-            <div className="w-full h-[60vh] rounded-xl overflow-hidden bg-gray-50 mb-6">
+            <div className="w-full h-[60vh] rounded-xl overflow-hidden bg-gray-50 mb-6 relative">
               <img src={mainImage} className="w-full h-full object-cover" alt={product.name} />
+              {product.hasOffer && (
+                <div className="absolute top-6 right-6 bg-gold text-white text-sm font-black tracking-widest px-4 py-2 rounded-full uppercase shadow-xl z-10">SALE</div>
+              )}
             </div>
             <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
               {product.images.map((img, i) => (
@@ -62,7 +65,12 @@ export default function ProductPage() {
               Premium Utility
             </div>
             <h1 className="text-4xl md:text-5xl font-display font-bold text-dark mb-4 leading-tight">{product.name}</h1>
-            <div className="text-3xl font-medium text-gold mb-8">{formatCurrency(product.price)}</div>
+            <div className="text-3xl font-medium text-gold mb-8 flex items-center gap-4">
+              {product.hasOffer && (
+                <span className="text-gray-400 line-through text-2xl">{formatCurrency(product.originalPrice)}</span>
+              )}
+              <span>{formatCurrency(product.price)}</span>
+            </div>
 
             <p className="text-gray-600 text-lg leading-relaxed mb-12">{product.longDescription}</p>
 
@@ -118,10 +126,18 @@ export default function ProductPage() {
               >
                 <div className="w-full aspect-square overflow-hidden bg-gray-50 relative">
                   <img src={p.images[0]} alt={p.name} className="w-full h-full object-cover" />
+                  {p.hasOffer && (
+                    <div className="absolute top-2 right-2 bg-red-600 text-white text-[8px] md:text-[10px] font-black tracking-widest px-2 py-1 rounded-full uppercase shadow-lg z-10">SALE</div>
+                  )}
                 </div>
                 <div className="p-4 flex flex-col flex-grow text-center items-center">
                   <h3 className="text-sm md:text-lg font-display font-bold text-dark mb-1 line-clamp-2 min-h-[40px] md:min-h-[50px]">{p.name}</h3>
-                  <div className="text-xs md:text-sm font-medium text-gold mb-3">{formatCurrency(p.price)}</div>
+                  <div className="text-xs md:text-sm font-medium text-gold mb-3 flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2">
+                    {p.hasOffer && (
+                      <span className="text-gray-400 line-through text-[10px] md:text-xs">{formatCurrency(p.originalPrice)}</span>
+                    )}
+                    <span>{formatCurrency(p.price)}</span>
+                  </div>
                   <button className="w-full mt-auto py-2 bg-dark text-white text-[10px] md:text-xs font-medium tracking-widest uppercase rounded hover:bg-gold transition-colors duration-300">
                     View
                   </button>

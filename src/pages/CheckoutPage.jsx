@@ -44,7 +44,9 @@ export default function CheckoutPage() {
     
 *Product Details:*
 Item: ${product.name}
-Amount: ${formatCurrency(product.price)}
+${product.hasOffer ? `*Offer Applied!*
+Actual Price: ~${formatCurrency(product.originalPrice)}~
+Offer Price: *${formatCurrency(product.price)}*` : `Amount: ${formatCurrency(product.price)}`}
 
 *Customer Details:*
 Name: ${data.name}
@@ -79,7 +81,13 @@ Looking forward to completing this order!`;
               <div className="text-center mb-10">
                 <h3 className="text-4xl font-display font-bold text-dark mb-2">Secure Acquisition</h3>
                 <p className="text-gray-500 mb-4">{product.name}</p>
-                <div className="text-2xl font-bold text-gold">{formatCurrency(product.price)}</div>
+
+                <div className="text-2xl font-bold text-gold flex items-center justify-center gap-3">
+                  {product.hasOffer && (
+                    <span className="text-gray-400 line-through text-lg">{formatCurrency(product.originalPrice)}</span>
+                  )}
+                  <span>{formatCurrency(product.price)}</span>
+                </div>
               </div>
 
               <form onSubmit={handleCheckoutSubmit} className="space-y-6">

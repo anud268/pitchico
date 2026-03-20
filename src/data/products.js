@@ -3,11 +3,13 @@ export const products = [
     id: 'p1',
     name: 'Aura Levitating Desk Lamp',
     price: 6500,
+    originalPrice: 13000,
+    hasOffer: true,
     description: 'A mesmerizing magnetic levitating light bulb that hovers in mid-air, bringing an undeniable wow factor to your workspace.',
     longDescription: 'The Aura Levitating Lamp uses advanced electromagnetic technology to float effortlessly in the air. This isn’t just a lamp; it’s a conversation starter and a piece of modern art. It provides a warm, soothing ambient glow perfect for deep work or relaxation, all while defying gravity right before your eyes.',
     images: [
       'https://images.pexels.com/photos/7218533/pexels-photo-7218533.jpeg',
-      // 'https://images.pexels.com/photos/7218533/pexels-photo-7218533.jpeg'
+      'https://images.pexels.com/photos/7218533/pexels-photo-7218533.jpeg'
     ],
     features: [
       '360-degree continuous rotation in mid-air',
@@ -27,6 +29,8 @@ export const products = [
     id: 'p2',
     name: 'Apex SmartPosture Wearable',
     price: 3200,
+    originalPrice: 5000,
+    hasOffer: true,
     description: 'A discreet, intelligent posture corrector that gently vibrates when you slouch, actively retraining your back muscles.',
     longDescription: 'In a world where we spend hours hunched over screens, back pain is inevitable. The Apex SmartPosture is a tiny, incredibly powerful device you wear on your upper back. Using gravity and angle sensors, it detects when your posture drops below a healthy angle and gently vibrates to remind you to sit up straight, permanently fixing slouching habits naturally.',
     images: [
@@ -51,6 +55,8 @@ export const products = [
     id: 'p3',
     name: 'SonicGlow Pro Cleaner',
     price: 4800,
+    originalPrice: 8000,
+    hasOffer: true,
     description: 'A powerful ultrasonic cleaning machine that blasts away microscopic dirt from glasses, jewelry, and watches in 3 minutes.',
     longDescription: 'Stop struggling with dirty glasses or tarnished jewelry. The SonicGlow Pro uses 45,000Hz of ultrasonic waves to create millions of microscopic cleansing bubbles. These bubbles penetrate the tiniest crevices of your valuables, lifting away grime, oil, and dust without any scrubbing. Simply add water, press the button, and watch your items sparkle like brand new.',
     images: [
@@ -75,6 +81,8 @@ export const products = [
     id: 'p4',
     name: 'Nimbus Cloud Humidifier',
     price: 2500,
+    originalPrice: 3500,
+    hasOffer: false,
     description: 'An elegant desktop humidifier that visually simulates a raining cloud, providing both moisture and a calming ASMR experience.',
     longDescription: 'The Nimbus Cloud Humidifier isn’t just about improving air quality; it’s about creating a tranquil ambiance. It features a unique water drip system that mimics the sound and look of gentle rainfall. Combined with a subtle ambient LED light, it’s the perfect companion for reading, studying, or sleeping.',
     images: [
