@@ -4,7 +4,7 @@ export default function About() {
   return (
     <section id="mission" className="py-32 px-6 max-w-7xl mx-auto flex justify-center">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-        <div className="rounded-xl overflow-hidden shadow-2xl aspect-[4/5] w-full">
+        <div className="rounded-xl overflow-hidden hidden lg:block shadow-2xl aspect-[4/5] w-full">
           <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000" alt="Innovation and Technology" className="w-full h-full object-cover" />
         </div>
         <div>
