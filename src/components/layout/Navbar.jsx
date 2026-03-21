@@ -10,7 +10,7 @@ export default function Navbar({ isScrolled }) {
   },[])
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-ivory border-b border-gray-200 py-3 md:py-4 shadow-sm' : 'bg-transparent py-4 md:py-6'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-0 ${isScrolled ? 'bg-ivory border-b border-gray-200 py-4 md:py-5 shadow-sm' : 'bg-transparent py-4 md:py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="text-2xl md:text-3xl font-display font-bold text-dark tracking-wide z-50">
           Pitchi<span className="text-gold">co</span>

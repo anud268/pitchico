@@ -1,10 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SummerOfferCard from './SummerOfferCard';
+import WhatsAppWidget from './WhatsAppWidget';
 
 export default function Hero() {
   return (
     <header className="relative min-h-screen flex items-center pt-32 pb-24 lg:py-0 px-6 overflow-hidden">
+      <div className="fixed top-[60px] left-0 w-full h-[25px] bg-dark/95 border-b border-gold/30 flex items-center overflow-hidden z-50">
+                <div className="w-[200%] flex items-center animate-marquee whitespace-nowrap">
+                  {[...Array(20)].map((_, i) => (
+                    <span key={i} className="mx-6 text-[10px] md:text-xs font-medium tracking-[0.3em] uppercase text-white inline-flex items-center">
+                      Pitchi<span className="text-gold">co</span> <span className="mx-6 text-gold/40">✦</span> SUMMER EXCLUSIVE : UP TO <span className="text-gold ml-1 animate-blink-gold-white">50% OFF</span> <span className="mx-6 text-gold/40">✦</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
       {/* Background Image & Overlay */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&q=80&w=1600')] bg-cover bg-center bg-fixed" />
@@ -15,11 +25,11 @@ export default function Hero() {
         
         {/* Left Content */}
         <div className="w-full max-w-2xl text-center lg:text-left mt-10 lg:mt-0">
-          <div className="inline-block px-4 py-1.5 md:px-5 md:py-2 bg-gold/10 text-gold border border-gold rounded-full text-xs md:text-sm font-semibold tracking-wider uppercase mb-6 md:mb-8">
+          <div className="inline-block px-4 py-1.5 md:px-5 md:py-2 bg-gold/10 text-gold border border-gold rounded-full text-xs md:text-sm font-semibold tracking-wider uppercase mb-6 md:mb-0">
             Smart Solutions • Modern Living
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-dark leading-tight mb-4 md:mb-6">
-            Elevate Your Reality <br /><span className="text-gold italic block mt-1">With Smart Innovations</span>
+            Elevate Your Reality <br /><span className="text-gold text-3xl md:text-5xl lg:text-6xl italic block mt-1">With Smart Innovations</span>
           </h1>
           <p className="text-base md:text-xl text-gray-600 mb-8 md:mb-12 max-w-xl mx-auto lg:mx-0 leading-relaxed">
             Discover products that don't just sit on a shelf. We curate problem-solving gadgets and wow-factor innovations designed to dramatically improve your daily life.
@@ -35,11 +45,13 @@ export default function Hero() {
         </div>
 
         {/* Right Content : Offer Card */}
-        <div className="w-full mt-6 lg:w-auto flex justify-center lg:justify-end animate-[fadeInRight_1.5s_ease-out] relative z-20 perspective-1000">
+        <div className="w-full mt-20 lg:w-auto flex justify-center lg:justify-end animate-[fadeInRight_1.5s_ease-out] relative z-20 perspective-1000">
           <SummerOfferCard />
         </div>
 
       </div>
+      
+      <WhatsAppWidget />
     </header>
   );
 }
