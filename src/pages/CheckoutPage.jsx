@@ -39,7 +39,7 @@ export default function CheckoutPage() {
       return;
     }
 
-    const phoneNumber = "8086261973";
+    const phoneNumber = "+918086261973";
     const message = `*✨ New Order Request ✨*
     
 *Product Details:*

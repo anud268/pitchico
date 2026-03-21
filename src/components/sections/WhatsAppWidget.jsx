@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function WhatsAppWidget() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const scrollRef = useRef(null);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function WhatsAppWidget() {
   }
 
   const handleWhatsAppRedirect = () => {
-    const phoneNumber = "8086261973"; // Set your business number here
+    const phoneNumber = "+918086261973"; // Set your business number here
     const text = "I'd like to ask about an offer from the website.";
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`, '_blank');
   };
