@@ -30,7 +30,7 @@ export default function WhatsAppWidget() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[100] w-[360px] max-w-[calc(100vw-32px)] bg-[#0b141a] rounded-2xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] font-sans flex flex-col border border-[#202c33] animate-[fadeInUp_0.3s_ease-out]">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[100] w-[360px] md:max-w-[calc(100vw-32px)] bg-[#0b141a] rounded-2xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] font-sans flex flex-col border border-[#202c33] animate-[fadeInUp_0.3s_ease-out]">
       
       {/* Header - Native WhatsApp Dark Mode */}
       <div className="bg-[#202c33] px-3 py-2.5 flex items-center relative z-10 shadow-[0_1px_3px_rgba(11,20,26,0.4)]">
@@ -40,11 +40,12 @@ export default function WhatsAppWidget() {
           </svg>
         </div>
         
-        <div className="w-10 h-10 rounded-full bg-[#364147] flex items-center justify-center overflow-hidden flex-shrink-0 cursor-pointer text-[#aebac1]">
+        <div className="w-8 h-8   rounded-full flex items-center justify-center overflow-hidden flex-shrink-0 cursor-pointer text-[#aebac1]">
           {/* Default User/Business Avatar Icon */}
-          <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 mt-2">
+          {/* <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 mt-2">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
-          </svg>
+          </svg> */}
+          <img src="/src/assets/logo.png" alt="Pitchico Logo" className="w-10 h-10 md:w-12 md:h-12 object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-300" />
         </div>
         
         <div className="ml-3 flex-1 overflow-hidden cursor-pointer" onClick={handleWhatsAppRedirect}>

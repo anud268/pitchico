@@ -6,23 +6,23 @@ import WhatsAppWidget from './WhatsAppWidget';
 export default function Hero() {
   return (
     <header className="relative min-h-screen flex items-center pt-32 pb-24 lg:py-0 px-6 overflow-hidden">
-      <div className="fixed top-[60px] left-0 w-full h-[25px] bg-dark/95 border-b border-gold/30 flex items-center overflow-hidden z-50">
-                <div className="w-[200%] flex items-center animate-marquee whitespace-nowrap">
-                  {[...Array(20)].map((_, i) => (
-                    <span key={i} className="mx-6 text-[10px] md:text-xs font-medium tracking-[0.3em] uppercase text-white inline-flex items-center">
-                      Pitchi<span className="text-gold">co</span> <span className="mx-6 text-gold/40">✦</span> SUMMER EXCLUSIVE : UP TO <span className="text-gold ml-1 animate-blink-gold-white">50% OFF</span> <span className="mx-6 text-gold/40">✦</span>
-                    </span>
-                  ))}
-                </div>
-              </div>
+      <div className="fixed top-[75px] left-0 w-full h-[25px] bg-dark/95 border-b border-gold/30 flex items-center overflow-hidden z-50">
+        <div className="w-[200%] flex items-center animate-marquee whitespace-nowrap">
+          {[...Array(20)].map((_, i) => (
+            <span key={i} className="mx-6 text-[10px] md:text-xs font-medium tracking-[0.3em] uppercase text-white inline-flex items-center">
+              Pitchi<span className="text-gold">co</span> <span className="mx-6 text-gold/40">✦</span> SUMMER EXCLUSIVE : UP TO <span className="text-gold ml-1 animate-blink-gold-white">50% OFF</span> <span className="mx-6 text-gold/40">✦</span>
+            </span>
+          ))}
+        </div>
+      </div>
       {/* Background Image & Overlay */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&q=80&w=1600')] bg-cover bg-center bg-fixed" />
+        <div className="absolute inset-0 bg-ivory bg-cover bg-center bg-fixed" />
         <div className="absolute inset-0 bg-gradient-to-r from-ivory via-ivory/80 to-ivory/20 lg:to-ivory/50" />
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-12 animate-[fadeIn_1.5s_ease-out]">
-        
+
         {/* Left Content */}
         <div className="w-full max-w-2xl text-center lg:text-left mt-10 lg:mt-0">
           <div className="inline-block px-4 py-1.5 md:px-5 md:py-2 bg-gold/10 text-gold border border-gold rounded-full text-xs md:text-sm font-semibold tracking-wider uppercase mb-6 md:mb-0">
@@ -50,7 +50,7 @@ export default function Hero() {
         </div>
 
       </div>
-      
+
       <WhatsAppWidget />
     </header>
   );

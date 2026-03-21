@@ -37,64 +37,64 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="min-h-screen pt-32 pb-24 px-6 max-w-7xl mx-auto animate-[fadeIn_0.5s_ease-out]">
-      <button onClick={() => navigate(-1)} className="mb-8 text-gray-500 hover:text-gold flex items-center gap-2 transition-colors uppercase tracking-widest text-xs font-semibold">
+    <div className="min-h-screen pt-24 md:pt-32 pb-24 px-4 md:px-6 max-w-7xl mx-auto animate-[fadeIn_0.5s_ease-out]">
+      <button onClick={() => navigate(-1)} className="mb-4 md:mb-8 text-gray-500 hover:text-gold flex items-center gap-2 transition-colors uppercase tracking-widest text-[10px] md:text-xs font-semibold">
         <span>&larr;</span> Back
       </button>
 
-      <div className="bg-white rounded-2xl shadow-xl p-6 md:p-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+      <div className="bg-white rounded-2xl shadow-xl p-4 md:p-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20">
           <div>
-            <div className="w-full h-[60vh] rounded-xl overflow-hidden bg-gray-50 mb-6 relative">
+            <div className="w-full h-[320px] sm:h-[450px] md:h-[60vh] rounded-xl overflow-hidden bg-gray-50 mb-4 relative">
               <img src={mainImage} className="w-full h-full object-cover" alt={product.name} />
               {product.hasOffer && (
-                <div className="absolute top-6 right-6 bg-gold text-white text-sm font-black tracking-widest px-4 py-2 rounded-full uppercase shadow-xl z-10">SALE</div>
+                <div className="absolute top-4 right-4 md:top-6 md:right-6 bg-gold text-white text-[10px] md:text-sm font-black tracking-widest px-3 py-1.5 md:px-4 md:py-2 rounded-full uppercase shadow-xl z-10">SALE</div>
               )}
             </div>
-            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
               {product.images.map((img, i) => (
-                <div key={i} onClick={() => setMainImage(img)} className={`w-24 h-24 flex-shrink-0 cursor-pointer rounded-lg overflow-hidden border-2 transition-all duration-300 ${mainImage === img ? 'border-gold opacity-100' : 'border-transparent opacity-60 hover:opacity-100'}`}>
+                <div key={i} onClick={() => setMainImage(img)} className={`w-16 h-16 md:w-24 md:h-24 flex-shrink-0 cursor-pointer rounded-lg overflow-hidden border-2 transition-all duration-300 ${mainImage === img ? 'border-gold opacity-100' : 'border-transparent opacity-60 hover:opacity-100'}`}>
                   <img src={img} className="w-full h-full object-cover" />
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="flex flex-col justify-center">
-            <div className="inline-block self-start px-4 py-1.5 bg-gold/10 text-gold border border-gold rounded-full text-xs font-semibold tracking-wider uppercase mb-6">
+          <div className="flex flex-col justify-start md:justify-center">
+            <div className="inline-block self-start px-3 py-1 md:px-4 md:py-1.5 bg-gold/10 text-gold border border-gold rounded-full text-[10px] md:text-xs font-semibold tracking-wider uppercase mb-3 md:mb-6">
               Premium Utility
             </div>
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-dark mb-4 leading-tight">{product.name}</h1>
-            <div className="text-3xl font-medium text-gold mb-8 flex items-center gap-4">
+            <h1 className="text-3xl md:text-5xl font-display font-bold text-dark mb-2 md:mb-4 leading-tight">{product.name}</h1>
+            <div className="text-2xl md:text-3xl font-medium text-[#25D366] md:text-gold mb-6 md:mb-8 flex items-center gap-3">
               {product.hasOffer && (
-                <span className="text-gray-400 line-through text-2xl">{formatCurrency(product.originalPrice)}</span>
+                <span className="text-gray-400 line-through text-lg md:text-2xl">{formatCurrency(product.originalPrice)}</span>
               )}
-              <span>{formatCurrency(product.price)}</span>
+              <span className="font-bold">{formatCurrency(product.price)}</span>
             </div>
 
-            <p className="text-gray-600 text-lg leading-relaxed mb-12">{product.longDescription}</p>
-
-            <div className="mb-10">
-              <h3 className="text-xl font-display font-bold text-dark border-b border-gray-200 pb-3 mb-6">Innovative Features</h3>
-              <ul className="space-y-4">
-                {product.features.map((f, i) => (
-                  <li key={i} className="text-gray-600 relative pl-8 before:content-['✦'] before:absolute before:left-0 before:text-gold">{f}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mb-12">
-              <h3 className="text-xl font-display font-bold text-dark border-b border-gray-200 pb-3 mb-6">Why You Need This</h3>
-              <ul className="space-y-4">
-                {product.advantages.map((a, i) => (
-                  <li key={i} className="text-gray-600 relative pl-8 before:content-['✦'] before:absolute before:left-0 before:text-gold">{a}</li>
-                ))}
-              </ul>
-            </div>
-
-            <button onClick={() => navigate(`/checkout/${product.id}`)} className="w-full py-5 bg-dark text-white font-medium tracking-widest uppercase rounded hover:bg-gold transition-colors duration-300 shadow-xl hover:-translate-y-1">
+            <button onClick={() => navigate(`/checkout/${product.id}`)} className="w-full py-4 bg-dark text-white text-sm font-bold tracking-widest uppercase rounded hover:bg-gold transition-colors duration-300 shadow-xl hover:-translate-y-1 mb-8">
               Acquire This Piece
             </button>
+
+            <p className="text-gray-600 text-sm md:text-lg leading-relaxed mb-8">{product.longDescription}</p>
+
+            <div className="mb-8">
+              <h3 className="text-lg md:text-xl font-display font-bold text-dark border-b border-gray-200 pb-2 md:pb-3 mb-4 md:mb-6">Innovative Features</h3>
+              <ul className="space-y-3">
+                {product.features.map((f, i) => (
+                  <li key={i} className="text-gray-600 text-sm md:text-base relative pl-6 md:pl-8 before:content-['✦'] before:absolute before:left-0 before:text-gold">{f}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mb-4">
+              <h3 className="text-lg md:text-xl font-display font-bold text-dark border-b border-gray-200 pb-2 md:pb-3 mb-4 md:mb-6">Why You Need This</h3>
+              <ul className="space-y-3">
+                {product.advantages.map((a, i) => (
+                  <li key={i} className="text-gray-600 text-sm md:text-base relative pl-6 md:pl-8 before:content-['✦'] before:absolute before:left-0 before:text-gold">{a}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -113,21 +113,21 @@ export default function ProductPage() {
               </button>
             </div>
           </div>
-          <div 
-            ref={scrollRef} 
+          <div
+            ref={scrollRef}
             className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide pb-8 snap-x"
             style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}
           >
             {relatedProducts.map(p => (
-              <div 
-                key={p.id} 
-                onClick={() => navigate(`/product/${p.id}`)} 
+              <div
+                key={p.id}
+                onClick={() => navigate(`/product/${p.id}`)}
                 className="min-w-[160px] md:min-w-[240px] w-[160px] md:w-[240px] flex-shrink-0 bg-white rounded-xl overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer snap-start flex flex-col"
               >
                 <div className="w-full aspect-square overflow-hidden bg-gray-50 relative">
                   <img src={p.images[0]} alt={p.name} className="w-full h-full object-cover" />
                   {p.hasOffer && (
-                    <div className="absolute top-2 right-2 bg-red-600 text-white text-[8px] md:text-[10px] font-black tracking-widest px-2 py-1 rounded-full uppercase shadow-lg z-10">SALE</div>
+                    <div className="absolute top-2 right-2 bg-gold text-white text-[8px] md:text-[10px] font-black tracking-widest px-2 py-1 rounded-full uppercase shadow-lg z-10">SALE</div>
                   )}
                 </div>
                 <div className="p-4 flex flex-col flex-grow text-center items-center">
