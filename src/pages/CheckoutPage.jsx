@@ -3,14 +3,21 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { products } from '../data/products';
 import { formatCurrency } from '../utils/formatters';
 import Toast from '../components/ui/Toast';
+import { useCart } from '../context/CartContext';
 
 export default function CheckoutPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { cart, getCartTotal, clearCart } = useCart();
+  
+  const isCartCheckout = id === 'cart';
   const product = products.find(p => p.id === id);
 
   const [checkoutStep, setCheckoutStep] = useState('form');
   const [toast, setToast] = useState({ show: false, message: "" });
+  
+  const checkoutItems = isCartCheckout ? cart : product ? [{ product, quantity: 1 }] : [];
+  const checkoutTotal = isCartCheckout ? getCartTotal() : product ? product.price : 0;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -21,10 +28,13 @@ export default function CheckoutPage() {
     setTimeout(() => setToast({ show: false, message: "" }), 4000);
   };
 
-  if (!product) {
+  if (checkoutItems.length === 0) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <h2 className="text-2xl font-bold">Product not found.</h2>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-ivory text-dark">
+        <h2 className="text-2xl font-bold mb-4 font-display">Your selection is empty.</h2>
+        <button onClick={() => navigate('/products')} className="px-8 py-3 bg-dark text-white rounded text-sm uppercase tracking-widest font-semibold hover:bg-gold transition">
+          Return to Collection
+        </button>
       </div>
     );
   }
@@ -39,31 +49,44 @@ export default function CheckoutPage() {
       return;
     }
 
+    const orderId = Math.floor(10000 + Math.random() * 90000);
+    const itemsText = checkoutItems.map((item, index) => 
+`  ${index + 1}. *${item.product.name}*
+      ▪ Quantity : *${item.quantity}*
+      ▪ Price    : _${formatCurrency(item.product.price)}_
+      ▪ Subtotal : *${formatCurrency(item.product.price * item.quantity)}*`
+    ).join('\n\n');
+
     const phoneNumber = "+918086261973";
-    const message = `*✨ New Order Request ✨*
-    
-*Product Details:*
-Item: ${product.name}
-${product.hasOffer ? `*Offer Applied!*
-Actual Price: ~${formatCurrency(product.originalPrice)}~
-Offer Price: *${formatCurrency(product.price)}*` : `Amount: ${formatCurrency(product.price)}`}
+    const message = `🌟 *PITCHICO EXCLUSIVE ORDER* 🌟
+----------------------------------
+*Order Reference:* #ORD-${orderId}
 
-*Customer Details:*
-Name: ${data.name}
-Phone: ${data.phone}
-Email: ${data.email}
+🛒 *ITEMS ACQUIRED:*
+${itemsText}
 
-*Shipping Information:*
-Address: ${data.address}
-City: ${data.city}
-Pincode: ${data.pincode}
+💰 *ORDER SUMMARY:*
+----------------------------------
+  *Grand Total :* 🪙 *${formatCurrency(checkoutTotal)}*
+----------------------------------
 
-Looking forward to completing this order!`;
+👤 *CLIENT INFORMATION:*
+  ▪ *Name*  : _${data.name}_
+  ▪ *Phone* : _${data.phone}_
+  ▪ *Email* : _${data.email}_
+
+📦 *SHIPPING DESTINATION:*
+  ▪ *Address* : _${data.address}_
+  ▪ *City*    : _${data.city}_
+  ▪ *Pincode* : _${data.pincode}_
+
+_Thank you for choosing Pitchico! Looking forward to confirming your order._ ✨`;
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
     window.open(whatsappUrl, '_blank');
+    if (isCartCheckout) clearCart();
     setCheckoutStep('success');
     showToast("Redirecting to WhatsApp...");
   };
@@ -80,13 +103,12 @@ Looking forward to completing this order!`;
             <>
               <div className="text-center mb-8 md:mb-10">
                 <h3 className="text-3xl md:text-4xl font-display font-bold text-dark mb-2">Secure Acquisition</h3>
-                <p className="text-gray-500 mb-4 text-sm md:text-base">{product.name}</p>
+                <p className="text-gray-500 mb-4 text-sm md:text-base">
+                  {checkoutItems.length === 1 ? checkoutItems[0].product.name : `${checkoutItems.length} items in your order`}
+                </p>
 
                 <div className="text-xl md:text-2xl font-bold text-gold flex items-center justify-center gap-2.5 bg-gold/5 w-fit mx-auto px-6 py-2 rounded-full border border-gold/20">
-                  {product.hasOffer && (
-                    <span className="text-gray-400 line-through text-sm md:text-base">{formatCurrency(product.originalPrice)}</span>
-                  )}
-                  <span>{formatCurrency(product.price)}</span>
+                  <span>Total: {formatCurrency(checkoutTotal)}</span>
                 </div>
               </div>
 

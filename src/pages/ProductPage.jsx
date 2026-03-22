@@ -2,11 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { products } from '../data/products';
 import { formatCurrency } from '../utils/formatters';
+import { useCart } from '../context/CartContext';
 
 export default function ProductPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [mainImage, setMainImage] = useState("");
+  const [quantity, setQuantity] = useState(1);
   const product = products.find(p => p.id === id);
   const scrollRef = useRef(null);
   const relatedProducts = products.filter(p => p.showOnFrontPage && p.id !== product?.id);
@@ -22,8 +25,18 @@ export default function ProductPage() {
     window.scrollTo(0, 0);
     if (product) {
       setMainImage(product.images[0]);
+      setQuantity(1);
     }
   }, [product, id]);
+
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+  };
+
+  const handleBuyNow = () => {
+    addToCart(product, quantity);
+    navigate(`/checkout/cart`);
+  };
 
   if (!product) {
     return (
@@ -72,9 +85,43 @@ export default function ProductPage() {
               <span className="font-bold">{formatCurrency(product.price)}</span>
             </div>
 
-            <button onClick={() => navigate(`/checkout/${product.id}`)} className="w-full py-4 bg-dark text-white text-sm font-bold tracking-widest uppercase rounded hover:bg-gold transition-colors duration-300 shadow-xl hover:-translate-y-1 mb-8">
-              Acquire This Piece
-            </button>
+            {/* Quantity and Actions */}
+            <div className="flex flex-col gap-4 mb-8 md:mb-10 w-full mt-2">
+              <div className="flex items-center gap-5">
+                <span className="text-xs md:text-sm font-bold tracking-widest uppercase text-gray-500">Quantity</span>
+                <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-white w-28 md:w-32 h-10 md:h-12 shadow-sm">
+                  <button 
+                    onClick={() => setQuantity(q => Math.max(1, q - 1))}
+                    className="flex-1 h-full text-gray-400 hover:text-dark hover:bg-gray-50 font-bold transition flex justify-center items-center text-lg"
+                  >
+                    -
+                  </button>
+                  <span className="w-10 text-center font-bold text-dark text-sm md:text-base">{quantity}</span>
+                  <button 
+                    onClick={() => setQuantity(q => Math.min(10, q + 1))}
+                    className="flex-1 h-full text-gray-400 hover:text-dark hover:bg-gray-50 font-bold transition flex justify-center items-center text-lg"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-2 pt-2 border-t border-gray-100 md:border-none md:pt-0">
+                <button 
+                  onClick={handleAddToCart}
+                  className="w-full sm:w-1/2 py-3.5 md:py-4 bg-white border border-dark text-dark text-xs md:text-sm font-bold tracking-widest uppercase rounded shadow-sm hover:border-gold hover:text-gold transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+                  Add To Cart
+                </button>
+                <button 
+                  onClick={handleBuyNow} 
+                  className="w-full sm:w-1/2 py-3.5 md:py-4 bg-dark border border-dark text-white text-xs md:text-sm font-bold tracking-widest uppercase rounded hover:bg-gold hover:border-gold transition-all duration-300 shadow-lg hover:-translate-y-1 flex items-center justify-center gap-2"
+                >
+                  Buy Now &rarr;
+                </button>
+              </div>
+            </div>
 
             <p className="text-gray-600 text-sm md:text-lg leading-relaxed mb-8">{product.longDescription}</p>
 

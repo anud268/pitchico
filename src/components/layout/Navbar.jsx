@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoUrl from '../../assets/logo.png';
+import { useCart } from '../../context/CartContext';
 
 export default function Navbar({ isScrolled }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { getCartCount, setIsCartOpen } = useCart();
   useEffect(()=>{
     onscroll=()=>{
       setIsMobileMenuOpen(false);
@@ -26,21 +28,48 @@ export default function Navbar({ isScrolled }) {
           <a href="/#mission" className="text-sm font-medium tracking-widest uppercase text-dark hover:text-gold transition-colors">Our Mission</a>
           <Link to="/products" className="text-sm font-medium tracking-widest uppercase text-dark hover:text-gold transition-colors">All Products</Link>
           <a href="/#values" className="text-sm font-medium tracking-widest uppercase text-dark hover:text-gold transition-colors">Values</a>
+          
+          <button 
+            onClick={() => setIsCartOpen(true)}
+            className="relative p-2 text-dark hover:text-gold transition-colors group"
+          >
+            <svg className="w-5 h-5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+            {getCartCount() > 0 && (
+              <span className="absolute 0 top-0 right-0 bg-gold text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-sm">
+                {getCartCount()}
+              </span>
+            )}
+          </button>
         </div>
 
-        {/* Mobile Toggle Button */}
-        <button 
-          className="md:hidden z-50 p-2 text-dark focus:outline-none"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            {isMobileMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        {/* Mobile controls */}
+        <div className="flex items-center gap-4 md:hidden z-50">
+          <button 
+            onClick={() => setIsCartOpen(true)}
+            className="relative p-2 text-dark hover:text-gold transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+            {getCartCount() > 0 && (
+              <span className="absolute top-0 right-0 bg-gold text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                {getCartCount()}
+              </span>
             )}
-          </svg>
-        </button>
+          </button>
+
+          {/* Mobile Toggle Button */}
+          <button 
+            className="p-2 text-dark focus:outline-none"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              {isMobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
 
         {/* Mobile Menu */}
         <div className={`fixed inset-0 bg-ivory/90 z-49 w-full h-full flex flex-col items-center justify-center transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0 ' : 'translate-x-full'} md:hidden`}>

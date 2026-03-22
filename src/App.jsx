@@ -4,6 +4,8 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 // Layout
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import CartDrawer from './components/layout/CartDrawer';
+import { CartProvider } from './context/CartContext';
 
 // Pages
 import Home from './pages/Home';
@@ -29,8 +31,10 @@ export default function App() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-ivory text-dark font-body select-none">
-      <Navbar isScrolled={isScrolled} />
+    <CartProvider>
+      <div className="min-h-screen flex flex-col bg-ivory text-dark font-body select-none relative overflow-x-hidden">
+        <Navbar isScrolled={isScrolled} />
+        <CartDrawer />
       
       <main className="flex-grow">
         <Routes>
@@ -41,7 +45,8 @@ export default function App() {
         </Routes>
       </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </CartProvider>
   );
 }
