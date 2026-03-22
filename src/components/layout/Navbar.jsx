@@ -72,7 +72,7 @@ export default function Navbar({ isScrolled }) {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`fixed inset-0 bg-ivory/90 z-49 w-full h-full flex flex-col items-center justify-center transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0 ' : 'translate-x-full'} md:hidden`}>
+        <div className={`fixed inset-0 bg-ivory z-49 w-full h-full flex flex-col items-center justify-center transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0 ' : 'translate-x-full'} md:hidden`}>
           <div className="flex flex-col items-center gap-10">
             <a href="/" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-display font-bold tracking-widest uppercase text-dark hover:text-gold transition-colors">Home</a>
             <a href="/#mission" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-display font-bold tracking-widest uppercase text-dark hover:text-gold transition-colors">Our Mission</a>

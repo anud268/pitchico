@@ -61,7 +61,7 @@ export default function ProductPage() {
             <div className="w-full h-[320px] sm:h-[450px] md:h-[60vh] rounded-xl overflow-hidden bg-gray-50 mb-4 relative">
               <img src={mainImage} className="w-full h-full object-cover" alt={product.name} />
               {product.hasOffer && (
-                <div className="absolute top-4 right-4 md:top-6 md:right-6 bg-gold text-white text-[10px] md:text-sm font-black tracking-widest px-3 py-1.5 md:px-4 md:py-2 rounded-full uppercase shadow-xl z-10">SALE</div>
+                <div className="absolute top-4 right-4 md:top-6 md:right-6 bg-gold text-white text-[10px] md:text-sm font-black tracking-widest px-3 py-1.5 md:px-4 md:py-2 rounded-full uppercase shadow-xl z-10">OFFER</div>
               )}
             </div>
             <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
@@ -174,7 +174,7 @@ export default function ProductPage() {
                 <div className="w-full aspect-square overflow-hidden bg-gray-50 relative">
                   <img src={p.images[0]} alt={p.name} className="w-full h-full object-cover" />
                   {p.hasOffer && (
-                    <div className="absolute top-2 right-2 bg-gold text-white text-[8px] md:text-[10px] font-black tracking-widest px-2 py-1 rounded-full uppercase shadow-lg z-10">SALE</div>
+                    <div className="absolute top-2 right-2 bg-gold text-white text-[8px] md:text-[10px] font-black tracking-widest px-2 py-1 rounded-full uppercase shadow-lg z-10">OFFER</div>
                   )}
                 </div>
                 <div className="p-4 flex flex-col flex-grow text-center items-center">

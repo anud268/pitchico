@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { formatCurrency } from '../utils/formatters';
 import { products } from '../data/products';
+import { useCart } from '../context/CartContext';
 
 export default function AllProductsPage() {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,7 +26,7 @@ export default function AllProductsPage() {
             <div className="w-full aspect-[4/5] md:aspect-square overflow-hidden bg-gray-50 relative">
               <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               {product.hasOffer && (
-                <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-gold text-white text-[8px] md:text-[10px] font-black tracking-widest px-2 py-1 md:px-3 md:py-1.5 rounded-full uppercase z-10 shadow-lg">SALE</div>
+                <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-gold text-white text-[8px] md:text-[10px] font-black tracking-widest px-2 py-1 md:px-3 md:py-1.5 rounded-full uppercase z-10 shadow-lg">OFFER</div>
               )}
             </div>
             <div className="p-3 md:p-8 flex flex-col flex-grow items-center text-center">
@@ -37,11 +39,13 @@ export default function AllProductsPage() {
               </div>
               <p className="text-[11px] md:text-sm text-gray-500 mb-3 md:mb-6 line-clamp-2 hidden md:-webkit-box flex-grow">{product.description}</p>
               <button
-                onClick={(e) => { e.stopPropagation(); navigate(`/checkout/${product.id}`); }}
-                className="w-full mt-auto py-2.5 md:py-3 bg-dark text-white font-medium tracking-wider md:tracking-widest uppercase text-[10px] md:text-xs rounded hover:bg-gold transition-colors duration-300"
+                onClick={(e) => { 
+                  e.stopPropagation(); 
+                  addToCart(product, 1); 
+                }}
+                className="w-full mt-auto py-2.5 md:py-3 bg-dark text-white font-medium tracking-wider md:tracking-widest uppercase text-[10px] md:text-xs rounded hover:bg-gold transition-colors duration-300 pointer-events-auto"
               >
-                <span className="md:hidden">Buy</span>
-                <span className="hidden md:inline">Acquire</span>
+                Add to Cart
               </button>
             </div>
           </div>

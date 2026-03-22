@@ -38,7 +38,7 @@ export default function CartDrawer() {
 
       {/* Drawer */}
       <div 
-        className={`fixed top-0 right-0 w-full md:w-[450px] h-full bg-white z-[250] shadow-2xl transform transition-transform duration-500 flex flex-col ease-in-out ${isCartOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed top-0 right-0 w-full md:w-[450px] h-full bg-ivory z-[250] shadow-2xl transform transition-transform duration-500 flex flex-col ease-in-out ${isCartOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
@@ -74,7 +74,12 @@ export default function CartDrawer() {
                 <div className="flex flex-col flex-1 justify-between py-1">
                   <div className="pr-4">
                     <h3 className="text-sm font-bold text-dark leading-snug line-clamp-2">{item.product.name}</h3>
-                    <p className="text-gold font-bold mt-1 text-sm">{formatCurrency(item.product.price)}</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      {item.product.hasOffer && (
+                        <span className="text-gray-400 line-through text-xs">{formatCurrency(item.product.originalPrice)}</span>
+                      )}
+                      <span className="text-gold font-bold text-sm">{formatCurrency(item.product.price)}</span>
+                    </div>
                   </div>
 
                   <div className="flex items-center gap-3 mt-2">
@@ -98,7 +103,7 @@ export default function CartDrawer() {
 
                 <button 
                   onClick={() => removeFromCart(item.product.id)}
-                  className="absolute top-4 right-4 text-gray-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute top-4 right-4 text-gray-400 hover:text-red-500 group-hover:opacity-100 transition-opacity"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                 </button>
