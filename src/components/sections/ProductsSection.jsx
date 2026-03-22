@@ -13,6 +13,7 @@ export default function ProductsSection() {
   const [startX, setStartX] = useState(0);
   const [scrollLeftState, setScrollLeftState] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [userInteracted, setUserInteracted] = useState(false);
 
   const reqRef = useRef(null);
 
@@ -25,7 +26,7 @@ export default function ProductsSection() {
     if (!el) return;
 
     const interval = setInterval(() => {
-      if (!isHovered && !isDown) {
+      if (!isHovered && !isDown && !userInteracted) {
         const child = el.firstElementChild;
         if (child) {
           const gap = window.innerWidth >= 768 ? 24 : 16;
@@ -54,17 +55,25 @@ export default function ProductsSection() {
 
   const handleMouseDown = (e) => {
     setIsDown(true);
-    setStartX(e.pageX - scrollRef.current.offsetLeft);
-    setScrollLeftState(scrollRef.current.scrollLeft);
+    setUserInteracted(true);
+    
+    const el = scrollRef.current;
+    if (el) {
+      el.classList.remove('snap-mandatory');
+      setStartX(e.pageX - el.offsetLeft);
+      setScrollLeftState(el.scrollLeft);
+    }
   };
 
   const handleMouseLeave = () => {
     setIsDown(false);
     setIsHovered(false);
+    if(scrollRef.current) scrollRef.current.classList.add('snap-mandatory');
   };
 
   const handleMouseUp = () => {
     setIsDown(false);
+    if(scrollRef.current) scrollRef.current.classList.add('snap-mandatory');
   };
 
   const handleMouseMove = (e) => {
@@ -75,23 +84,14 @@ export default function ProductsSection() {
     scrollRef.current.scrollLeft = scrollLeftState - walk;
   };
 
-  const handleTouchStart = (e) => {
-    setIsDown(true);
-    setStartX(e.touches[0].pageX - scrollRef.current.offsetLeft);
-    setScrollLeftState(scrollRef.current.scrollLeft);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDown) return;
-    const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    scrollRef.current.scrollLeft = scrollLeftState - walk;
+  const handleTouchStart = () => {
+    setUserInteracted(true);
   };
 
   // Products are defined above to be used inside useEffect
 
   return (
-    <section id="products" className="py-20 md:py-32 px-4 md:px-6 mx-auto overflow-hidden">
+    <section id="products" className="py-20 md:py-32 px-4 md:px-6 max-w-7xl mx-auto overflow-hidden">
       <div className="text-center mb-12 md:mb-20">
         <h2 className="text-4xl md:text-5xl font-display font-bold text-dark mb-4">Trending Innovations</h2>
         <div className="w-16 h-1 bg-gold mx-auto my-6 md:my-8"></div>
@@ -108,8 +108,6 @@ export default function ProductsSection() {
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onTouchStart={handleTouchStart}
-        onTouchEnd={() => setIsDown(false)}
-        onTouchMove={handleTouchMove}
       >
         {displayProducts.map((product, index) => (
           <div
