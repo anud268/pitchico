@@ -16,14 +16,14 @@ export default function SummerOfferCard() {
             <div className="absolute inset-0 bg-gradient-to-t from-gold/95 via-yellow-500/40 to-transparent transition-opacity duration-700 group-hover:opacity-90" />
             
             {/* Floating Badge */}
-            <div className="absolute top-5 right-5  backdrop-blur-md border border-black text-black text-[6px] lg:text-[9px] font-bold tracking-[0.3em] uppercase px-2 lg:px-4 py-1 lg:py-1.5 rounded-full overflow-hidden">
-              <span className="relative z-10 text-black">Limited Edition</span>
+            <div className="absolute top-5 sm:right-5 right-2  backdrop-blur-md border border-black text-black text-[6px] lg:text-[9px] font-bold tracking-[0.3em] uppercase px-2 lg:px-4 py-1 lg:py-1.5 rounded-full overflow-hidden">
+              <span className="relative z-10 text-black ">Limited Edition</span>
             </div>
 
             {/* Typography */}
             <div className="absolute bottom-2 md:bottom-6 left-0 w-full px-2 md:px-8 text-center lg:text-left">
-              <h3 className="text-xl sm:text-2xl md:text-5xl font-display font-medium text-white tracking-widest leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] transition-transform duration-700 group-hover:-translate-y-1">SUMMER</h3>
-              <p className="text-base sm:text-xl md:text-4xl text-black -mt-1 md:-mt-2 lg:ml-4 transition-transform duration-700 delay-75 group-hover:-translate-y-1" style={{ fontFamily: "'Great Vibes', cursive", textShadow: "0 2px 8px rgba(255,255,255,0.4)" }}>Collection</p>
+              <h3 className="text-xl sm:text-2xl md:text-5xl !font-bold font-display font-medium text-white tracking-widest leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] transition-transform duration-700 group-hover:-translate-y-1">SUMMER</h3>
+              <p className="text-base sm:text-xl md:text-4xl font-bold text-black -mt-1 md:-mt-2 lg:ml-4 transition-transform duration-700 delay-75 group-hover:-translate-y-1" style={{ fontFamily: "'Great Vibes', cursive", textShadow: "0 2px 8px rgba(255,255,255,0.4)" }}>Collection</p>
             </div>
           </div>
           
