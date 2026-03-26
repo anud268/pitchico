@@ -57,7 +57,7 @@ export default function CheckoutPage() {
       ▪ Subtotal : *${formatCurrency(item.product.price * item.quantity)}*`
     ).join('\n\n');
 
-    const phoneNumber = "+918086261973";
+    const phoneNumber = "+919778167652";
     const message = `🌟 *PITCHICO EXCLUSIVE ORDER* 🌟
 ----------------------------------
 *Order Reference:* #ORD-${orderId}
