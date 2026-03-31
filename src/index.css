@@ -5,8 +5,11 @@
   --color-dark: #1A1A1A;
   --color-gold: #B8860B;
   --color-gold-hover: #996515;
-  --font-display: "Playfair Display", serif;
-  --font-body: "Montserrat", sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-logo: "Cinzel", serif;
+  --font-hero-serif: "Playfair Display", serif;
+  --font-hero-script: "Great Vibes", cursive;
 }
 
 @layer utilities {

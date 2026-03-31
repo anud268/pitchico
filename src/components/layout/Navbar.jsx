@@ -17,7 +17,7 @@ export default function Navbar({ isScrolled }) {
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2.5 z-50 group">
           <img src={logoUrl} alt="Pitchico Logo" className="w-10 h-10 md:w-12 md:h-12 object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-300" />
-          <span className="text-2xl md:text-3xl font-display font-bold text-dark tracking-wide mt-1">
+          <span className="text-2xl md:text-3xl font-logo font-bold text-dark  mt-1">
             Pitchi<span className="text-gold group-hover:text-[#D4AF37] transition-colors">co</span>
           </span>
         </Link>

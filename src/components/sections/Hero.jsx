@@ -33,8 +33,16 @@ export default function Hero() {
           <div className="inline-block px-4 py-1.5 md:px-5 md:py-2 bg-gold/10 text-gold border border-gold rounded-full text-[10px] md:text-sm font-semibold tracking-wider uppercase mb-5 md:mb-0">
             Curated in Kerala for Modern Living
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-dark leading-tight mb-4 md:mb-6">
-            Elevate Your Reality <br /><span className="text-gold text-2xl md:text-5xl lg:text-6xl italic block mt-1">With Smart Innovations</span>
+          <h1 className="flex flex-col text-center lg:text-left text-dark mb-4 md:mb-6 mt-5">
+            <span className="font-hero-script text-6xl md:text-7xl lg:text-8xl text-gold font-normal leading-none -mb-3 md:-mb-5 z-10 drop-shadow-sm">
+              Elevate Your
+            </span>
+            <span className="font-hero-serif text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-dark leading-none">
+              Reality
+            </span>
+            <span className="font-body text-sm md:text-lg text-gray-500 tracking-widest uppercase mt-4 md:mt-6 font-semibold">
+              With Smart Innovations
+            </span>
           </h1>
           <p className="text-sm md:text-xl text-gray-600 mb-6 md:mb-12 max-w-xl mx-auto lg:mx-0 leading-relaxed px-2 lg:px-0">
             Inspired by innovation, rooted in Kerala. We bring you thoughtfully curated smart products designed to simplify and elevate your everyday lifestyle.

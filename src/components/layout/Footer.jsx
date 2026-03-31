@@ -8,7 +8,7 @@ export default function Footer() {
         
         {/* Brand Div */}
         <div className="lg:col-span-2 md:pr-10">
-          <Link to="/" className="text-3xl font-display font-bold tracking-wide inline-block mb-6">
+          <Link to="/" className="text-3xl font-logo font-bold tracking-wide inline-block mb-6">
             Pitchi<span className="text-gold">co</span>
           </Link>
           <p className="text-gray-400 max-w-sm leading-relaxed text-sm md:text-base">
