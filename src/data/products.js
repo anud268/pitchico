@@ -1,3 +1,7 @@
+import gloves1 from "../assets/gloves/gloves1.jpg";
+import gloves2 from "../assets/gloves/gloves2.jpg";
+import gloves3 from "../assets/gloves/gloves3.jpg";
+
 export const products = [
   {
     id: 'p1',
@@ -85,9 +89,9 @@ export const products = [
     hasOffer: true,
     longDescription: 'Non-slip, waterproof cleaning gloves with a built-in elastic grip and PEVC protective layer for safe, comfortable use. Designed with durable nylon fiber and a powerful cleaning wire, they easily remove stubborn stains without scratching surfaces. Multi-functional for dishwashing, kitchen cleaning, and even heat protection, these reusable gloves are easy to wash and come with a convenient hanging loop.',
     images: [
-      "../src/assets/gloves/gloves1.jpg",
-      '../src/assets/gloves/gloves2.jpg',
-      '../src/assets/gloves/gloves3.jpg'
+      gloves1,
+      gloves2,
+      gloves3
     ],
     features: [
       'Smart Grip Anti-Slip Technology',
