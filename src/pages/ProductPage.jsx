@@ -58,8 +58,7 @@ export default function ProductPage() {
       <div className="bg-white rounded-2xl shadow-xl p-4 md:p-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20">
           <div>
-            <div className="w-full aspect-square rounded-xl overflow-hidden bg-gray-50 mb-4 relative">
-              <img src={mainImage} className="w-full h-full object-cover" alt={product.name} />
+            <div className="w-full h-[320px] sm:h-[450px] md:h-[60vh] rounded-xl overflow-hidden bg-gray-50 mb-4 relative">              <img src={mainImage} className="w-full h-full object-cover" alt={product.name} />
               {product.hasOffer && (
                 <div className="absolute top-4 right-4 md:top-6 md:right-6 bg-gold text-white text-[10px] md:text-sm font-black tracking-widest px-3 py-1.5 md:px-4 md:py-2 rounded-full uppercase shadow-xl z-10">OFFER</div>
               )}
