@@ -51,14 +51,14 @@ export default function ProductPage() {
 
   return (
     <div className="min-h-screen pt-24 md:pt-32 pb-24 px-4 md:px-6 max-w-7xl mx-auto animate-[fadeIn_0.5s_ease-out]">
-      <button onClick={() => navigate(-1)} className="mb-4 md:mb-8 text-gray-500 hover:text-gold flex items-center gap-2 transition-colors uppercase tracking-widest text-[10px] md:text-xs font-semibold">
+      <button onClick={() => navigate(-1)} className="mb-4 md:mb-8 hidden lg:block text-gray-500 hover:text-gold flex items-center gap-2 transition-colors uppercase tracking-widest text-[10px] md:text-xs font-semibold">
         <span>&larr;</span> Back
       </button>
 
       <div className="bg-white rounded-2xl shadow-xl p-4 md:p-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20">
           <div>
-            <div className="w-full h-[320px] sm:h-[450px] md:h-[60vh] rounded-xl overflow-hidden bg-gray-50 mb-4 relative">
+            <div className="w-full aspect-square rounded-xl overflow-hidden bg-gray-50 mb-4 relative">
               <img src={mainImage} className="w-full h-full object-cover" alt={product.name} />
               {product.hasOffer && (
                 <div className="absolute top-4 right-4 md:top-6 md:right-6 bg-gold text-white text-[10px] md:text-sm font-black tracking-widest px-3 py-1.5 md:px-4 md:py-2 rounded-full uppercase shadow-xl z-10">OFFER</div>

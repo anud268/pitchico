@@ -79,27 +79,27 @@ export const products = [
   },
   {
     id: 'p4',
-    name: 'Nimbus Cloud Humidifier',
-    price: 2500,
-    originalPrice: 3500,
-    hasOffer: false,
-    description: 'An elegant desktop humidifier that visually simulates a raining cloud, providing both moisture and a calming ASMR experience.',
-    longDescription: 'The Nimbus Cloud Humidifier isn’t just about improving air quality; it’s about creating a tranquil ambiance. It features a unique water drip system that mimics the sound and look of gentle rainfall. Combined with a subtle ambient LED light, it’s the perfect companion for reading, studying, or sleeping.',
+    name: 'Dishwashing Hand Gloves',
+    price: 299,
+    originalPrice: 499,
+    hasOffer: true,
+    longDescription: 'Non-slip, waterproof cleaning gloves with a built-in elastic grip and PEVC protective layer for safe, comfortable use. Designed with durable nylon fiber and a powerful cleaning wire, they easily remove stubborn stains without scratching surfaces. Multi-functional for dishwashing, kitchen cleaning, and even heat protection, these reusable gloves are easy to wash and come with a convenient hanging loop.',
     images: [
-      'https://images.unsplash.com/photo-1626307416562-ee839676f5b9?auto=format&fit=crop&q=80&w=800',
-      'https://images.unsplash.com/photo-1582294406566-bf55c490a12e?auto=format&fit=crop&q=80&w=800'
+      '../src/assets/gloves/gloves1.jpeg',
+      '../src/assets/gloves/gloves2.jpeg',
+      '../src/assets/gloves/gloves3.jpeg'
     ],
     features: [
-      'Realistic raining effect with ASMR sound',
-      'Adjustable mist settings and ambient lighting',
-      'Large water tank for continuous 10-hour use',
-      'Auto-shutoff safety feature'
+      'Smart Grip Anti-Slip Technology',
+      'Scratch-Free Power Scrub Layer',
+      'Dual Protection Design',
+      'Quick-Dry & Odor-Resistant Material'
     ],
     advantages: [
-      'Relieves dry air symptoms while creating a zen atmosphere',
-      'Can be used with essential oils for aromatherapy',
-      'Silent operation ideal for bedrooms',
-      'Aesthetically pleasing minimalist design'
+      'Protects hands from chemicals, heat, and dirt during cleaning.',
+      'Built-in scrub removes tough stains quickly without extra effort.',
+      'Saves time by combining gloves and scrubber into one tool.',
+      'Reusable design reduces cost and avoids frequent replacement needs.'
     ],
     showOnFrontPage: true
   },
