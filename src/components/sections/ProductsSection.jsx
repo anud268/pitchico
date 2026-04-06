@@ -94,7 +94,7 @@ export default function ProductsSection() {
     <section id="products" className="py-20 md:py-32 px-4 md:px-6 max-w-7xl mx-auto overflow-hidden">
       <div className="text-center mb-12 md:mb-20">
         <h2 className="text-4xl md:text-5xl font-display font-bold text-dark mb-4">Trending Innovations</h2>
-        <div className="w-16 h-1 bg-gold mx-auto my-6 md:my-8"></div>
+        {/* <div className="w-16 h-1 bg-gold mx-auto my-6 md:my-8"></div> */}
         <p className="text-lg md:text-xl text-gray-500 font-light max-w-2xl mx-auto">Smart gadgets designed to instantly upgrade your lifestyle.</p>
       </div>
 
@@ -122,7 +122,9 @@ export default function ProductsSection() {
             <div className="w-full aspect-square overflow-hidden bg-gray-50 relative pointer-events-none">
               <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" draggable="false" />
               {product.hasOffer && (
-                <div className="absolute top-2 right-2 bg-gold text-white text-[9px] md:text-[10px] font-black tracking-widest px-2 py-1 md:px-3 md:py-1.5 rounded-full uppercase z-10 shadow-lg">OFFER</div>
+                <div className="absolute top-2 right-2 bg-gold text-white text-[9px] md:text-[10px] font-black tracking-widest px-2 py-1 md:px-3 md:py-1.5 rounded-full uppercase z-10 shadow-lg">
+                  {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
+                </div>
               )}
             </div>
             <div className="p-3 md:p-5 flex flex-col flex-grow items-center text-center">
@@ -146,6 +148,7 @@ export default function ProductsSection() {
           </div>
         ))}
       </div>
+      <button onClick={() => navigate('/products')} className="w-full mt-auto py-2 md:py-3 bg-dark text-white font-medium tracking-wider uppercase text-[10px] md:text-xs rounded hover:bg-gold transition-colors duration-300 pointer-events-auto">View All Products</button>
     </section>
   );
 }

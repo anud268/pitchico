@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+const getIKImage = (filename) => `https://ik.imagekit.io/xtsxmvsu4/Products/${filename}?tr=w-1200,q-80`;
+
 
 export default function SummerOfferCard() {
   return (
@@ -10,8 +12,7 @@ export default function SummerOfferCard() {
           {/* Luxury Banner Image */}
           <div className="relative w-[35%] sm:w-[40%] lg:w-full h-full lg:h-64 overflow-hidden shrink-0 border-r border-gray-100 lg:border-r-0">
             {/* Aesthetic Palm Shadow Image */}
-            <div className="absolute inset-0 h-full  bg-[url('https://img.onmanorama.com/content/dam/mm/en/news/kerala/images/2019/4/5/sun-burn.jpg?w=1120&h=583')] bg-cover bg-center transform group-hover:scale-110 transition-transform duration-[2s] ease-out" />
-            
+            <img src={getIKImage('summerofferbg.png')} alt="" className='w-full h-full object-cover' />
             {/* Premium Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-gold/95 via-yellow-500/40 to-transparent transition-opacity duration-700 group-hover:opacity-90" />
             
@@ -23,7 +24,7 @@ export default function SummerOfferCard() {
             {/* Typography */}
             <div className="absolute bottom-2 md:bottom-6 left-0 w-full px-2 md:px-8 text-center lg:text-left">
               <h3 className="text-xl sm:text-2xl md:text-5xl !font-bold font-display font-medium text-white tracking-widest leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] transition-transform duration-700 group-hover:-translate-y-1">SUMMER</h3>
-              <p className="text-base sm:text-xl md:text-4xl font-bold text-black -mt-1 md:-mt-2 lg:ml-4 transition-transform duration-700 delay-75 group-hover:-translate-y-1" style={{ fontFamily: "'Great Vibes', cursive", textShadow: "0 2px 8px rgba(255,255,255,0.4)" }}>Collection</p>
+              <p className="text-base sm:text-xl md:text-4xl font-bold text-black -mt-1 md:-mt-2 lg:ml-4 transition-transform duration-700 delay-75 group-hover:-translate-y-1" style={{ fontFamily: "'Great Vibes', cursive", textShadow: "0 2px 8px rgba(255,255,255,0.4)" }}>Special Collection</p>
             </div>
           </div>
           

@@ -60,7 +60,9 @@ export default function ProductPage() {
           <div>
             <div className="w-full h-[320px] sm:h-[450px] md:h-[60vh] rounded-xl overflow-hidden bg-gray-50 mb-4 relative">              <img src={mainImage} className="w-full h-full object-cover" alt={product.name} />
               {product.hasOffer && (
-                <div className="absolute top-4 right-4 md:top-6 md:right-6 bg-gold text-white text-[10px] md:text-sm font-black tracking-widest px-3 py-1.5 md:px-4 md:py-2 rounded-full uppercase shadow-xl z-10">OFFER</div>
+                <div className="absolute top-4 right-4 md:top-6 md:right-6 bg-gold text-white text-[10px] md:text-sm font-black tracking-widest px-3 py-1.5 md:px-4 md:py-2 rounded-full uppercase shadow-xl z-10">
+                  {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
+                </div>
               )}
             </div>
             <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
@@ -74,7 +76,7 @@ export default function ProductPage() {
 
           <div className="flex flex-col justify-start md:justify-center">
             <div className="inline-block self-start px-3 py-1 md:px-4 md:py-1.5 bg-gold/10 text-gold border border-gold rounded-full text-[10px] md:text-xs font-semibold tracking-wider uppercase mb-3 md:mb-6">
-              Premium Utility
+              {product.category || 'Premium Utility'}
             </div>
             <h1 className="text-3xl md:text-5xl font-display font-bold text-dark mb-2 md:mb-4 leading-tight">{product.name}</h1>
             <div className="text-2xl md:text-3xl font-medium text-[#25D366] md:text-gold mb-6 md:mb-8 flex items-center gap-3">
@@ -173,7 +175,9 @@ export default function ProductPage() {
                 <div className="w-full aspect-square overflow-hidden bg-gray-50 relative">
                   <img src={p.images[0]} alt={p.name} className="w-full h-full object-cover" />
                   {p.hasOffer && (
-                    <div className="absolute top-2 right-2 bg-gold text-white text-[8px] md:text-[10px] font-black tracking-widest px-2 py-1 rounded-full uppercase shadow-lg z-10">OFFER</div>
+                    <div className="absolute top-2 right-2 bg-gold text-white text-[8px] md:text-[10px] font-black tracking-widest px-2 py-1 rounded-full uppercase shadow-lg z-10">
+                      {Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100)}% OFF
+                    </div>
                   )}
                 </div>
                 <div className="p-4 flex flex-col flex-grow text-center items-center">

@@ -1,97 +1,87 @@
-import gloves1 from "../assets/gloves/gloves1.jpg";
-import gloves2 from "../assets/gloves/gloves2.jpg";
-import gloves3 from "../assets/gloves/gloves3.jpg";
+const getIKImage = (filename) => `https://ik.imagekit.io/xtsxmvsu4/Products/${filename}?tr=w-1200,q-80`;
 
 export const products = [
   {
     id: 'p1',
-    name: 'Aura Levitating Desk Lamp',
-    price: 6500,
-    originalPrice: 13000,
+    name: 'Multi-Function Manual Garlic Presser',
+    price: 249,
+    originalPrice: 499,
     hasOffer: true,
-    description: 'A mesmerizing magnetic levitating light bulb that hovers in mid-air, bringing an undeniable wow factor to your workspace.',
-    longDescription: 'The Aura Levitating Lamp uses advanced electromagnetic technology to float effortlessly in the air. This isn’t just a lamp; it’s a conversation starter and a piece of modern art. It provides a warm, soothing ambient glow perfect for deep work or relaxation, all while defying gravity right before your eyes.',
-    images: [
-      'https://images.pexels.com/photos/7218533/pexels-photo-7218533.jpeg',
-      'https://images.pexels.com/photos/7218533/pexels-photo-7218533.jpeg'
-    ],
+    category: 'Kitchen Utilities',
+    longDescription: 'Say goodbye to the messy, tedious task of chopping garlic by hand. The Multi-Function Manual Garlic Presser is your ultimate kitchen companion, designed to make garlic preparation effortless, fast, and hygienic. Built with a premium stainless steel curved press plate and a comfortable ergonomic black handle, this tool lets you mince, crush, and press garlic cloves in a single rocking motion — no peeling required! The semi-circular rocking design evenly distributes pressure across the entire surface, giving you consistently fine garlic paste every time. Whether you are preparing a quick stir-fry, marinating meats, or making fresh garlic bread, this presser delivers restaurant-quality results right in your kitchen. The perforated stainless steel plate effortlessly presses juice and pulp through tiny holes, producing perfectly minced garlic in seconds. Unlike traditional squeezers, this presser is easy to rinse clean under running water, making maintenance a breeze. Durable, rust-resistant, and compact, it fits neatly in any kitchen drawer. A must-have tool that upgrades every cooking experience — from everyday meals to special occasions.',
+    images: [getIKImage('p11.png'), getIKImage('p12.png')],
     features: [
-      '360-degree continuous rotation in mid-air',
-      'LED energy-efficient warm light',
-      'Minimalist premium wooden base',
-      'Power failure auto-catch mechanism'
+      'Stainless steel press plate. Rust - proof, food - safe, and built to last for years',
+      'Rocking motion design. One smooth rock crushes garlic evenly and quickly',
+      'Ergonomic curved handle. Non- slip grip for effortless, pain - free pressing',
+      'Easy rinse cleaning. Dishwasher - safe design cleans in seconds, zero residue'
     ],
     advantages: [
-      'Instantly boosts the aesthetic of any room',
-      'Creates a calming, magical focal point',
-      'Perfect premium gift for tech enthusiasts',
-      'Consumes extremely low power'
+      '10x faster than chopping. Fresh minced garlic ready in under 10 seconds flat',
+      'No peeling needed. Press unpeeled cloves directly — saves time and mess',
+      'Odour-free hands. No direct contact means no stubborn garlic smell on skin',
+      'Perfect for every dish. Ideal for curries, pastas, marinades, chutneys, and more'
     ],
     showOnFrontPage: true
   },
   {
     id: 'p2',
-    name: 'Apex SmartPosture Wearable',
-    price: 3200,
-    originalPrice: 5000,
+    name: '2 in 1 Oil Sprayer and Dispenser',
+    price: 349,
+    originalPrice: 599,
     hasOffer: true,
-    description: 'A discreet, intelligent posture corrector that gently vibrates when you slouch, actively retraining your back muscles.',
-    longDescription: 'In a world where we spend hours hunched over screens, back pain is inevitable. The Apex SmartPosture is a tiny, incredibly powerful device you wear on your upper back. Using gravity and angle sensors, it detects when your posture drops below a healthy angle and gently vibrates to remind you to sit up straight, permanently fixing slouching habits naturally.',
-    images: [
-      'https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&q=80&w=800',
-      'https://images.unsplash.com/photo-1576678927484-cc907bcfaeb8?auto=format&fit=crop&q=80&w=800'
-    ],
+    category: 'Kitchen Utilities',
+    longDescription: "Upgrade your kitchen with this 2 in 1 Oil Sprayer and Dispenser, designed for convenience and healthier cooking. This versatile bottle allows you to both spray and pour oil, giving you full control over the quantity used. Perfect for cooking, grilling, baking, and salad dressing, it helps reduce excess oil consumption while enhancing flavor. The fine mist spray ensures even distribution, making it ideal for air frying and non-stick cooking. Made from high-quality, food-grade materials, it is safe, durable, and easy to use. The transparent body lets you monitor oil levels, while the ergonomic design provides a comfortable grip. Its leak-proof construction prevents spills and mess, keeping your kitchen clean. Easy to refill and clean, this oil dispenser is a practical addition to any modern kitchen, helping you cook smarter, healthier, and more efficiently every day.",
+    images: [getIKImage('p02_1.png'),getIKImage('p02_2.png'),getIKImage('p02_3.png')],
     features: [
-      'Real-time angle detection chip',
-      'Ergonomic, invisible under-clothing design',
-      '14-day battery life on a single charge',
-      'Skin-friendly hypoallergenic silicone'
+      'Dual function design allows spraying and pouring from one bottle',
+      'Fine mist spray ensures even oil distribution for cooking',
+      'Leak- proof structure prevents spills and keeps kitchen clean always',
+      'Transparent body helps monitor oil levels easily and quickly'
     ],
     advantages: [
-      'Significantly reduces neck and back pain',
-      'Builds muscle memory for permanent correction',
-      'Boosts confidence with a taller, stronger stance',
-      'No restrictive straps or uncomfortable braces'
+      'Helps control oil usage for healthier cooking and better lifestyle',
+      'Perfect for air frying, grilling, baking, and daily cooking',
+      'Reduces mess and keeps kitchen neat and organized always',
+      'Easy to use, refill, and clean for everyday convenience'
     ],
     showOnFrontPage: false
   },
   {
     id: 'p3',
-    name: 'SonicGlow Pro Cleaner',
-    price: 4800,
-    originalPrice: 8000,
+    name: 'Portable Mesh Nebulizer for Adults & Kids',
+    price: 399,
+    originalPrice: 999,
     hasOffer: true,
-    description: 'A powerful ultrasonic cleaning machine that blasts away microscopic dirt from glasses, jewelry, and watches in 3 minutes.',
-    longDescription: 'Stop struggling with dirty glasses or tarnished jewelry. The SonicGlow Pro uses 45,000Hz of ultrasonic waves to create millions of microscopic cleansing bubbles. These bubbles penetrate the tiniest crevices of your valuables, lifting away grime, oil, and dust without any scrubbing. Simply add water, press the button, and watch your items sparkle like brand new.',
-    images: [
-      'https://images.unsplash.com/photo-1581699516625-ff46e499d63c?auto=format&fit=crop&q=80&w=800',
-      'https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&q=80&w=800'
-    ],
+    category: 'Health & Care',
+    longDescription: "Experience fast and effective respiratory relief with this Portable Mesh Nebulizer, designed for both adults and kids. Using advanced mesh technology, it converts liquid medication into a fine mist that reaches deep into the lungs for better absorption and quicker results. Its ultra-quiet operation ensures a comfortable and stress-free experience, especially for children and elderly users. Compact and lightweight, this nebulizer is perfect for home use, travel, or emergencies. The ergonomic design allows easy handling, while the one-button operation makes it simple for anyone to use. It comes with multiple mask sizes and a mouthpiece, ensuring suitability for all age groups. The device is energy-efficient and can be powered via USB or batteries, offering maximum convenience. Ideal for asthma, cough, and other respiratory conditions, this nebulizer is a reliable solution for everyday breathing care.",
+    images: [getIKImage('p03_1.png'), getIKImage('p03_2.png'), getIKImage('p03_3.png')],
     features: [
-      '45,000Hz high-frequency ultrasonic waves',
-      'One-button 3-minute auto-cleaning cycle',
-      'Premium stainless steel inner tank',
-      'Compact, travel-friendly design'
+      'Advanced mesh technology delivers fine mist for efficient medication absorption',
+      'Ultra- quiet operation ensures peaceful usage for kids and elderly',
+      'Compact portable design perfect for travel and emergency use anytime',
+      'Dual power options support USB and battery for flexible usage'
     ],
     advantages: [
-      'Restores optical clarity to dirty eyeglasses instantly',
-      'Safely cleans delicate rings, chains, and watch bands',
-      'Eliminates the need for harsh chemical cleaners',
-      'Saves time and money on professional cleaning'
+      'Provides quick relief from asthma, cough, and breathing difficulties',
+      'Easy to use design suitable for all age groups',
+      'Portable size allows use anywhere anytime without inconvenience',
+      'Silent operation ensures comfortable therapy without noise disturbance'
     ],
     showOnFrontPage: true
   },
   {
     id: 'p4',
     name: 'Dishwashing Hand Gloves',
-    price: 299,
+    price: 149,
     originalPrice: 499,
     hasOffer: true,
+    category: 'Kitchen Utilities',
     longDescription: 'Non-slip, waterproof cleaning gloves with a built-in elastic grip and PEVC protective layer for safe, comfortable use. Designed with durable nylon fiber and a powerful cleaning wire, they easily remove stubborn stains without scratching surfaces. Multi-functional for dishwashing, kitchen cleaning, and even heat protection, these reusable gloves are easy to wash and come with a convenient hanging loop.',
     images: [
-      gloves1,
-      gloves2,
-      gloves3
+      getIKImage('gloves1.jpg'),
+      getIKImage('gloves2.jpg'),
+      getIKImage('gloves3.jpg')
     ],
     features: [
       'Smart Grip Anti-Slip Technology',
@@ -109,145 +99,145 @@ export const products = [
   },
   {
     id: 'p5',
-    name: 'GlowMatrix Pixel Grid',
-    price: 8500,
-    description: 'A customizable smart LED pixel canvas that displays pixel art, clocks, and notifications synchronized to your phone.',
-    longDescription: 'Turn any wall or desk into a dynamic art display with the GlowMatrix Pixel Grid. Through its intuitive companion app, you can draw your own pixel animations, browse millions of community-created artworks, or set it to display practical information like the weather, time, and your social media notifications in a retro 8-bit style.',
+    name: 'Manual Food Chopper Vegetable Cutter for Guacamole, Coleslaw, Indian Cooking',
+    price: 399,
+    originalPrice: 699,
+    hasOffer: true,
+    category: 'Kitchen Utilities',
+    longDescription: "Make food preparation faster and easier with this Manual Food Chopper, a must-have kitchen tool for every home. Designed for convenience, this compact vegetable cutter helps you quickly chop onions, garlic, vegetables, fruits, and even small portions of meat without electricity. The sharp stainless steel blades ensure efficient and uniform cutting, while the sturdy hand-press mechanism delivers effortless operation. Its transparent container lets you monitor the chopping process, ensuring perfect results every time. Ideal for preparing guacamole, coleslaw, salads, and more, this chopper saves time and reduces kitchen mess. The anti-slip base provides stability during use, and the detachable parts make cleaning quick and hassle-free. Compact and lightweight, it is perfect for small kitchens, travel, or outdoor cooking. Upgrade your cooking experience with this practical, durable, and user-friendly food chopper designed for everyday convenience.",
     images: [
-      'https://images.unsplash.com/photo-1542382156909-9ae38d5690b2?auto=format&fit=crop&q=80&w=800',
-      'https://images.unsplash.com/photo-1606132786961-75fbccfbd9e2?auto=format&fit=crop&q=80&w=800'
+      getIKImage('p05_1.png'),
+      getIKImage('p05_2.png'),
+      getIKImage('p05_3.png')
     ],
     features: [
-      '16x16 customizable RGB LED grid',
-      'Bluetooth app connectivity',
-      'Built-in smart alarm and notification system',
-      'Rechargeable battery for portability'
+      'Powerful hand - press mechanism ensures quick chopping without electricity needed',
+      'Sharp stainless steel blades deliver precise and uniform cutting results',
+      'Transparent container allows easy monitoring during chopping process always',
+      'Detachable parts enable quick cleaning and convenient storage after use'
     ],
     advantages: [
-      'Endless personalization for your setup or gaming room',
-      'Serves as a practical smart clock and visual notifier',
-      'Great collaborative tool for creating pixel art',
-      'Highly vibrant and vivid colors'
+      'Saves time during food preparation for busy daily cooking routine',
+      'No electricity required making it perfect for outdoor or travel',
+      'Easy to use design suitable for beginners and professionals alike',
+      'Reduces effort while chopping vegetables, fruits, and small meat pieces'
     ],
     showOnFrontPage: false
   },
   {
     id: 'p6',
-    name: 'Zenith Magnetic Hourglass',
-    price: 2200,
-    description: 'A mesmerizing desk toy featuring iron filings instead of sand, creating unique, spiky magnetic sculptures as time passes.',
-    longDescription: 'The Zenith Magnetic Hourglass reimagines a classic timepiece. Instead of regular sand, it is filled with magnetic iron filings. As the filings fall upon the magnetic base, they bloom into beautiful, stalagmite-like crystal structures that are never the same twice. It takes approximately one minute to empty, making it a perfect quick mental break.',
-    images: [
-      'https://images.unsplash.com/photo-1520113412646-dfb5fe26046e?auto=format&fit=crop&q=80&w=800',
-      'https://images.unsplash.com/photo-1594819047050-99defca82545?auto=format&fit=crop&q=80&w=800'
-    ],
+    name: 'Over Door Hook Hanger',
+    price: 229,
+    originalPrice: 399,
+    hasOffer: true,
+    category: 'Home Accessories',
+    longDescription: "Upgrade your home organization with this sleek Over Door Hanger made from premium stainless steel. Designed to maximize unused space, this hanger easily fits over most standard doors without the need for drilling or tools. Its sturdy construction ensures durability and long-lasting performance, while the smooth polished finish adds a modern touch to any room. Featuring multiple hooks, it provides ample space to hang coats, bags, belts, scarves, and more, keeping your essentials neatly arranged and easily accessible. The anti-slip ball tips protect your items from damage and prevent them from falling off. Ideal for bedrooms, bathrooms, or entryways, this versatile door rack helps reduce clutter and keeps your living space tidy. Whether for daily use or extra storage, it is a practical and stylish solution for every home. Perfect for small spaces and busy lifestyles.",
+    images: [getIKImage('p06_1.png'), getIKImage('p06_2.png'), getIKImage('p06_3.png')],
     features: [
-      'Genuine hand-blown glass construction',
-      'Strong neodymium magnet hidden in the wooden base',
-      'Contains premium iron filings',
-      'One-minute timer cycle'
+      'Space - saving design maximizes unused door space efficiently and neatly',
+      'Strong stainless steel build ensures durability and long - lasting performance',
+      'Anti - slip ball ends prevent items from falling and damage',
+      'Tool - free installation allows quick setup without drilling or effort'
     ],
     advantages: [
-      'Provides a visually therapeutic, stress-relieving experience',
-      'Looks incredibly sophisticated on any executive desk',
-      'A fascinating educational tool demonstrating magnetic fields',
-      'No batteries or power required'
+      'Keeps your room organized and clutter - free with minimal effort',
+      'Perfect for small spaces where storage options are limited',
+      'Easy to install and remove without damaging your doors',
+      'Provides quick access to daily essentials like bags and clothes'
     ],
     showOnFrontPage: true
   },
   {
     id: 'p7',
-    name: 'HyperCharge X Invisible Pad',
-    price: 3800,
-    description: 'A powerful wireless charger that mounts underneath your desk, allowing you to charge your phone seamlessly through wood or glass.',
-    longDescription: 'Eliminate cable clutter entirely with the HyperCharge X. This invisible wireless charging pad easily adheres to the underside of any non-metallic desk up to 30mm thick. Simply place your phone on the designated spot on your desk surface, and watch it charge as if by magic. It supports fast charging for both Apple and Android devices.',
-    images: [
-      'https://images.unsplash.com/photo-1622445275463-afa2ab738c34?auto=format&fit=crop&q=80&w=800',
-      'https://images.unsplash.com/photo-1586953208448-b95a792036c6?auto=format&fit=crop&q=80&w=800'
-    ],
+    name: '3 in 1 Knife Sharpener with Easy-Grip Handle & Non-Slip Rubber Base',
+    price: 299,
+    originalPrice: 599,
+    hasOffer: true,
+    category: 'Kitchen Utilities',
+    longDescription: "Restore your dull kitchen knives to razor-sharp perfection in seconds with the 3 in 1 Knife Sharpener. Featuring a professional 3-stage sharpening system — coarse, fine, and polishing — it works on all types of blades including chef knives, serrated knives, and pocket knives. The ergonomic red grip handle offers firm, comfortable control, while the non-slip rubber base keeps the sharpener stable on any surface. Safe, fast, and beginner-friendly — just a few strokes and your knives are kitchen-ready again.",
+    images: [getIKImage('p07_1.png'), getIKImage('p07_2.png'), getIKImage('p07_3.png')],
     features: [
-      'Long-distance Qi wireless charging technology',
-      'Works through wood, glass, marble, and plastic (up to 30mm)',
-      '15W fast charging output',
-      'Over-charge and thermal protection'
+      '3 - stage sharpening system. Coarse, fine, and polish stages for any blade',
+      'Ergonomic easy - grip handle. Non - slip red grip for safe and comfortable sharpening',
+      'Non - slip rubber base. Stays firmly on countertop for stable, safe use',
+      'Works on all knife types. Chef, serrated, pocket knives — sharpens them all',
     ],
     advantages: [
-      'Maintains a 100% clean, minimalist desk setup',
-      'Zero drilling or permanent modification required',
-      'Compatible with fully cased phones',
-      'Protects charging ports from wear and tear'
+      'Sharp knives in seconds. Just 3–5 strokes restores a razor - sharp edge instantly',
+      'Extends knife life span. Regular sharpening saves money on new knives',
+      'Safer cooking every day. Sharp blades cut cleaner and reduce kitchen accidents',
+      'Beginner - friendly design. No skill needed — anyone can sharpen like a pro',
     ],
     showOnFrontPage: true
   },
   {
     id: 'p8',
-    name: 'Vortex Self-Stirring Mug',
-    price: 1500,
-    description: 'A futuristic coffee mug equipped with a built-in magnetic stirrer that perfectly blends your beverages with the push of a button.',
-    longDescription: 'Say goodbye to spoons and poorly mixed drinks. The Vortex Self-Stirring Mug features a specialized magnetic pill at the base. At the press of a button on the handle, it creates a powerful micro-tornado inside your mug, perfectly blending coffee, hot chocolate, protein powder, or matcha. The magnetic pill can be easily removed for cleaning.',
-    images: [
-      'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&q=80&w=800',
-      'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&q=80&w=800'
-    ],
+    name: 'Gas Saver Burner Stand | Gas Saver Jali | Windproof Gas Saver Stand',
+    price: 299,
+    originalPrice: 499,
+    hasOffer: true,
+    category: 'Kitchen Utilities',
+    longDescription: "Cut your gas bills in half with the Gas Saver Burner Stand — a smart, stainless steel wind shield designed to concentrate flame heat directly onto your cookware. By blocking wind and reflecting heat inward, it dramatically reduces gas consumption while cooking faster. Made from high-grade stainless steel, it fits all standard gas burners and is built to handle high temperatures safely. Lightweight, easy to place, and simple to clean — it is the most affordable upgrade for every Indian kitchen. Save gas, save money, cook smarter.",
+    images: [getIKImage('p08_1.png'), getIKImage('p08_2.png'), getIKImage('p08_3.png')],
     features: [
-      'Magnetic friction-free stirring mechanism',
-      'Double-wall vacuum insulation to keep drinks hot',
-      'Spill-resistant lid',
-      'USB-C rechargeable battery'
+      'Windproof heat shield design',
+      'Universal burner compatibility',
+      'Premium stainless steel body',
+      'Reflective inner surface',
+      'Bounces heat upward to cook food up to 30 % faster'
     ],
     advantages: [
-      'Flawlessly mixes powders without any clumping',
-      'Saves time and eliminates dirty spoons',
-      'Maintains beverage temperature significantly longer',
-      'Fun and deeply satisfying to use'
+      'Cuts gas bills significantly',
+      'Faster cooking every day',
+      'Works in windy conditions',
+      'Zero - effort maintenance',
+      'Easy wipe - clean surface, no tools needed to install'
     ],
     showOnFrontPage: false
   },
   {
     id: 'p9',
-    name: 'Lumina Smart Sleep Mask',
-    price: 4200,
-    description: 'A high-tech blackout sleep mask featuring ultra-thin integrated Bluetooth speakers for immersive soundscapes and meditation.',
-    longDescription: 'Transform your sleep environment anywhere you go. The Lumina Smart Sleep Mask offers 100% absolute darkness with 3D eye cavities that ensure zero pressure on your eyelids. Integrated into the sides are ultra-thin, high-fidelity Bluetooth speakers. Fall asleep instantly to your favorite white noise, audiobooks, or meditation tracks without using uncomfortable earbuds.',
-    images: [
-      'https://images.unsplash.com/photo-1558017487-06bf9f82613a?auto=format&fit=crop&q=80&w=800',
-      'https://images.unsplash.com/photo-1531259683007-016a7b628fc3?auto=format&fit=crop&q=80&w=800'
-    ],
+    name: 'Jade Roller & Gua Sha Facial Massager Set',
+    price: 399,
+    originalPrice: 599,
+    hasOffer: true,
+    category: 'Health & Care',
+    longDescription: "Bring the luxury of a professional facial massage into your daily skincare routine. This Jade Roller & Gua Sha set is crafted from 100% natural green jade stone, known for its cooling and healing properties. The dual-ended roller glides smoothly over the face, boosting blood circulation, reducing puffiness, and helping skincare products absorb deeper into the skin. The Gua Sha stone targets fine lines, jaw tension, and facial contour. Together, they deliver a spa-level glow from the comfort of your home — naturally, daily, effortlessly.",
+    images: [getIKImage('p09_1.png'), getIKImage('p09_2.png'), getIKImage('p09_3.png')],
     features: [
-      'Ergonomic 3D design for zero eye pressure',
-      'Ultra-thin stereo Bluetooth 5.0 speakers',
-      'Breathable, memory foam construction',
-      '12-hour continuous battery life'
+      '100 % natural jade stone. Authentic cooling jade soothes and calms skin instantly',
+      'Dual - ended roller design. Large end for face, small end for eyes and nose',
+      'Gua sha sculpting tool. Contours jawline, cheekbones, and neck with ease',
+      'Gold - plated steel frame. Premium rust - free frame for smooth, noiseless rolling',
     ],
     advantages: [
-      'Drastically improves sleep quality and duration',
-      'Perfect for side sleepers due to the slim speakers',
-      'Ideal for travel, blocking out both light and noise',
-      'Skin-friendly and easy to wash (removable electronics)'
+      'Reduces puffiness naturally. Cool jade drains fluid and de - puffs face fast',
+      'Boosts serum absorption. Rolling pushes serums deeper for maximum benefit',
+      '5 - minute daily ritual. Visible glow and lift with just minutes a day',
+      'Perfect self - care gift. Elegant set loved by skincare enthusiasts worldwide',
     ],
     showOnFrontPage: true
   },
   {
     id: 'p10',
-    name: 'AeroGlide Hover Chess',
-    price: 12500,
-    description: 'A revolutionary smart chessboard where pieces magically glide across the board by themselves, playing against you or remote opponents.',
-    longDescription: 'Experience the magic of wizard chess in real life. The AeroGlide Hover Chess board uses a complex array of subterranean robotics and magnets to move physical pieces autonomously. Play against built-in AI of varying difficulty levels, or connect online to play with opponents worldwide and watch their moves physically play out on your board in real-time.',
-    images: [
-      'https://images.unsplash.com/photo-1580541832626-2a7131ee809f?auto=format&fit=crop&q=80&w=800',
-      'https://images.unsplash.com/photo-1586165368502-1bad197a6461?auto=format&fit=crop&q=80&w=800'
-    ],
+    name: 'Quick Dry Water Absorbing Rectangular Silicon Floor Mat',
+    price: 199,
+    originalPrice: 399,
+    hasOffer: true,
+    category: 'Home Accessories',
+    longDescription: "Upgrade your bathroom with the Quick Dry Water Absorbing Silicon Floor Mat — designed to keep your floors safe, clean, and dry in seconds. Made from premium super-absorbent silicon, it soaks up water instantly the moment you step out of the shower. Unlike regular fabric mats, this one air-dries within minutes, staying fresh and odour-free all day. The non-slip rubber base grips tightly to wet tiles, preventing slips and falls. Lightweight, easy to clean, and built to last — simply rinse under tap water and it's ready to use again.Its elegant dual- tone oval design adds a modern touch to any bathroom décor.",
+    images: [getIKImage('p10_1.png'), getIKImage('p10_2.png')],
     features: [
-      'Self-moving magnetic pieces',
-      'App integration for online play and AI matches',
-      'Tactile wooden finish with high-quality weighted pieces',
-      'Internal silent robotic arm mechanism'
+      'Super - absorbent silicon surface. Instantly soaks up water with one single step',
+      'Ultra - fast air drying. Dries completely in minutes, stays fresh always',
+      'Anti - slip rubber base. Grips wet tiles firmly for maximum safety',
+      'Odour - free eco material. Non - toxic, hygienic, and safe for the whole family'
     ],
     advantages: [
-      'The ultimate premium gift for chess lovers and tech geeks',
-      'Brings the tactile feel back to digital/online chess',
-      'Excellent centerpiece that draws everyone’s attention',
-      'Great tool to learn and replay famous historical games'
+      'Keeps floors completely dry and safe — no more slipping',
+      'Eliminates bathroom odours with natural anti-bacterial properties',
+      'Saves time and effort — no need for frequent washing',
+      'Durable, long-lasting material that stays looking new'
     ],
     showOnFrontPage: false
   }
