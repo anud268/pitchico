@@ -44,7 +44,7 @@ export default function CheckoutPage() {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
-    if (!data.name || !data.email || !data.phone) {
+    if (!data.name || !data.email || !data.phone || !data.address || !data.city || !data.pincode || !data.paymentMethod) {
       showToast("Please fill all required fields");
       return;
     }
@@ -75,10 +75,11 @@ ${itemsText}
   ▪ *Phone* : _${data.phone}_
   ▪ *Email* : _${data.email}_
 
-📦 *SHIPPING DESTINATION:*
+📦 *SHIPPING & PAYMENT:*
   ▪ *Address* : _${data.address}_
   ▪ *City*    : _${data.city}_
   ▪ *Pincode* : _${data.pincode}_
+  ▪ *Payment* : _${data.paymentMethod}_
 
 _Thank you for choosing Pitchico! Looking forward to confirming your order._ ✨`;
 
@@ -112,43 +113,77 @@ _Thank you for choosing Pitchico! Looking forward to confirming your order._ ✨
                 </div>
               </div>
 
-              <form onSubmit={handleCheckoutSubmit} className="space-y-4 md:space-y-6">
+              <form onSubmit={handleCheckoutSubmit} className="space-y-6 md:space-y-8">
+                {/* Personal Information */}
                 <div>
-                  <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-500 uppercase mb-1.5 md:mb-2 ml-1">Full Name</label>
-                  <input name="name" required className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all text-sm md:text-base text-dark" placeholder="John Doe" />
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  <div>
-                    <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-500 uppercase mb-1.5 md:mb-2 ml-1">Email Address</label>
-                    <input name="email" type="email" required className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all text-sm md:text-base text-dark" placeholder="john@example.com" />
-                  </div>
-                  <div>
-                    <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-500 uppercase mb-1.5 md:mb-2 ml-1">Phone Number</label>
-                    <input name="phone" type="tel" required className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all text-sm md:text-base text-dark" placeholder="+91 0000 000000" />
+                  <h4 className="text-[11px] md:text-xs font-bold tracking-widest uppercase text-gold mb-3 md:mb-4 border-b border-gray-100 pb-2">1. Personal Details</h4>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1.5 ml-1">Full Name</label>
+                      <input name="name" required className="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all text-sm text-dark placeholder-gray-300 shadow-sm hover:border-gray-300" placeholder="e.g. John Doe" />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1.5 ml-1">Email Address</label>
+                        <input name="email" type="email" required className="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all text-sm text-dark placeholder-gray-300 shadow-sm hover:border-gray-300" placeholder="e.g. john@example.com" />
+                      </div>
+                      <div>
+                        <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1.5 ml-1">Phone Number</label>
+                        <input name="phone" type="tel" required className="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all text-sm text-dark placeholder-gray-300 shadow-sm hover:border-gray-300" placeholder="e.g. +91 9876543210" />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
+                {/* Shipping Information */}
                 <div>
-                  <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-500 uppercase mb-1.5 md:mb-2 ml-1">Shipping Address</label>
-                  <textarea name="address" required rows="3" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all resize-none text-sm md:text-base text-dark" placeholder="Complete Delivery Address"></textarea>
+                  <h4 className="text-[11px] md:text-xs font-bold tracking-widest uppercase text-gold mb-3 md:mb-4 border-b border-gray-100 pb-2">2. Shipping Details</h4>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1.5 ml-1">Full Address</label>
+                      <textarea name="address" required rows="2" className="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all resize-none text-sm text-dark placeholder-gray-300 shadow-sm hover:border-gray-300" placeholder="House No, Street, Landmark"></textarea>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1.5 ml-1">City / Town</label>
+                        <input name="city" required className="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all text-sm text-dark placeholder-gray-300 shadow-sm hover:border-gray-300" placeholder="e.g. Kochi" />
+                      </div>
+                      <div>
+                        <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1.5 ml-1">Postal Code</label>
+                        <input name="pincode" required className="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all text-sm text-dark placeholder-gray-300 shadow-sm hover:border-gray-300" placeholder="e.g. 682001" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                {/* Payment Information */}
+                <div>
+                  <h4 className="text-[11px] md:text-xs font-bold tracking-widest uppercase text-gold mb-3 md:mb-4 border-b border-gray-100 pb-2">3. Payment</h4>
                   <div>
-                    <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-500 uppercase mb-1.5 md:mb-2 ml-1">City / Town</label>
-                    <input name="city" required className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all text-sm md:text-base text-dark" placeholder="City Name" />
-                  </div>
-                  <div>
-                    <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-500 uppercase mb-1.5 md:mb-2 ml-1">Postal Code</label>
-                    <input name="pincode" required className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all text-sm md:text-base text-dark" placeholder="Pincode" />
+                    <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1.5 ml-1">Select Payment Method</label>
+                    <div className="relative">
+                      <select name="paymentMethod" required defaultValue="" className="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all text-sm text-dark appearance-none cursor-pointer shadow-sm hover:border-gray-300">
+                        <option value="" disabled>Select Payment Method</option>
+                        <option value="Cash ON Delivery">Cash On Delivery</option>
+                        <option value="Prepaid">Prepaid</option>
+                      </select>
+                      <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <button type="submit" className="w-full flex items-center justify-center gap-3 py-4 md:py-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold tracking-widest text-sm uppercase rounded-xl transition-all duration-300 shadow-[0_4px_15px_rgba(37,211,102,0.3)] hover:-translate-y-1 mt-6">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.1.133 1.396 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" /></svg>
-                  Order via WhatsApp
-                </button>
+                <div className="pt-4">
+                  <button type="submit" className="w-full flex items-center justify-center gap-3 py-4 md:py-4 bg-dark hover:bg-gold text-white font-bold tracking-widest text-sm uppercase rounded-xl transition-all duration-500 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(201,162,39,0.5)] group">
+                    Confirm Your Order
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
+                </div>
               </form>
             </>
           )}
