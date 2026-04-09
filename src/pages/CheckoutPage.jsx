@@ -52,6 +52,7 @@ export default function CheckoutPage() {
     const orderId = Math.floor(10000 + Math.random() * 90000);
     const itemsText = checkoutItems.map((item, index) => 
 `  ${index + 1}. *${item.product.name}*
+      ▪ Product Image    : ${item.product.images[0]}
       ▪ Quantity : *${item.quantity}*
       ▪ Price    : _${formatCurrency(item.product.price)}_
       ▪ Subtotal : *${formatCurrency(item.product.price * item.quantity)}*`
