@@ -164,7 +164,7 @@ _Thank you for choosing Pitchico! Looking forward to confirming your order._ ✨
                     <div className="relative">
                       <select name="paymentMethod" required defaultValue="" className="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all text-sm text-dark appearance-none cursor-pointer shadow-sm hover:border-gray-300">
                         <option value="" disabled>Select Payment Method</option>
-                        <option value="Cash ON Delivery">Cash On Delivery</option>
+                        <option value="Cash On Delivery">Cash On Delivery</option>
                         <option value="Prepaid">Prepaid</option>
                       </select>
                       <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400">

@@ -27,12 +27,12 @@ export default function AllProductsPage() {
         <p className="text-xl text-gray-500 font-light">Explore our complete collection of smart gadgets.</p>
       </div> */}
 
-      <div className="flex flex-wrap justify-center gap-2 mb-6">
+      <div className="flex overflow-x-auto gap-2 md:gap-3 mb-6 md:mb-10 pb-2 -mx-6 px-6 md:mx-0 md:px-0 md:flex-wrap md:justify-center snap-x" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {categories.map(category => (
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
-            className={`px-2 py-1 md:py-2 md:px-6 rounded-full text-[7px] md:text-sm font-bold tracking-widest uppercase transition-all duration-300 shadow-sm ${
+            className={`flex-shrink-0 whitespace-nowrap snap-start px-3 py-1.5 md:py-2 md:px-6 rounded-full text-[9px] md:text-sm font-bold tracking-widest uppercase transition-all duration-300 shadow-sm ${
               selectedCategory === category 
                 ? 'bg-dark text-white shadow-lg scale-105' 
                 : 'bg-white text-gray-500 hover:text-dark hover:bg-gray-50 border border-gray-200'

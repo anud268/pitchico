@@ -124,7 +124,7 @@ export default function CartDrawer() {
               onClick={checkoutClick}
               className="w-full py-4 bg-dark text-white font-bold tracking-widest uppercase rounded shadow-lg hover:bg-gold transition-colors hover:-translate-y-1"
             >
-              Express Checkout
+              Order Now
             </button>
           </div>
         )}
