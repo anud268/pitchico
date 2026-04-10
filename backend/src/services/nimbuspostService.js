@@ -66,7 +66,7 @@ const createShipment = async (order) => {
                 discount: 0,
                 cod_charges: 0,
                 payment_type: paymentType,
-                order_amount: data.subtotal,
+                order_amount: order.totalAmount,
                 package_weight: 500,
                 package_length: 15,
                 package_width: 15,

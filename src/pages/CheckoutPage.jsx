@@ -16,9 +16,17 @@ export default function CheckoutPage() {
   const [checkoutStep, setCheckoutStep] = useState('form');
   const [toast, setToast] = useState({ show: false, message: "" });
   const [paymentMode, setPaymentMode] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
   
   const checkoutItems = isCartCheckout ? cart : product ? [{ product, quantity: 1 }] : [];
-  const checkoutTotal = isCartCheckout ? getCartTotal() : product ? product.price : 0;
+  
+  const actualItemsTotal = checkoutItems.reduce((total, item) => total + ((item.product.originalPrice || item.product.price) * item.quantity), 0);
+  const itemsTotal = checkoutItems.reduce((total, item) => total + (item.product.price * item.quantity), 0);
+  const discount = actualItemsTotal > itemsTotal ? actualItemsTotal - itemsTotal : 0;
+  
+  const shippingCharge = 0; // Free shipping by default
+  const codCharge = paymentMode === 'Cash On Delivery' ? 70 : 0;
+  const checkoutTotal = actualItemsTotal + shippingCharge + (Math.abs(codCharge) - Math.abs(discount));
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -55,6 +63,8 @@ export default function CheckoutPage() {
       return;
     }
 
+    setIsProcessing(true);
+
     if (paymentMode === 'Prepaid') {
       try {
         showToast("Processing Secure UPI Request...");
@@ -84,22 +94,28 @@ export default function CheckoutPage() {
             contact: data.phone
           },
           handler: async function (response) {
-            // Payment Success: Proceed to Finalizing the Order
             showToast("Payment Successful! Finalizing Order...");
             await finalizeOrder(data, response.razorpay_payment_id);
           },
+          modal: {
+            ondismiss: function() {
+              setIsProcessing(false);
+            }
+          },
           theme: {
-            color: "#1a1a1a" // Matching our dark theme
+            color: "#1a1a1a"
           }
         };
 
         const rzp = new window.Razorpay(options);
         rzp.on('payment.failed', function (response){
+           setIsProcessing(false);
            showToast(`Payment Failed: ${response.error.description}`);
         });
         rzp.open();
         
       } catch (error) {
+        setIsProcessing(false);
         console.error("Razorpay Integration Error:", error);
         showToast("Something went wrong with Payment Gateway");
       }
@@ -135,6 +151,7 @@ export default function CheckoutPage() {
       console.error("Failed to save to Database:", error);
     }
 
+    setIsProcessing(false);
     if (isCartCheckout) clearCart();
     setCheckoutStep('success');
   };
@@ -153,9 +170,9 @@ export default function CheckoutPage() {
                   {checkoutItems.length === 1 ? checkoutItems[0].product.name : `${checkoutItems.length} items in your order`}
                 </p>
 
-                <div className="text-xl md:text-2xl font-bold text-gold flex items-center justify-center gap-2.5 bg-gold/5 w-fit mx-auto px-6 py-2 rounded-full border border-gold/20">
-                  <span>Total: {formatCurrency(checkoutTotal)}</span>
-                </div>
+                  <div className="text-xs md:text-sm font-semibold tracking-widest text-gold bg-gold/10 px-4 py-1.5 rounded-full inline-block mt-2">
+                    EXPRESS CHECKOUT
+                  </div>
               </div>
 
               <form onSubmit={handleCheckoutSubmit} className="space-y-6 md:space-y-8">
@@ -223,12 +240,72 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
-                <div className="pt-4">
-                  <button type="submit" disabled={checkoutStep === 'success'} className="w-full flex items-center justify-center gap-3 py-4 md:py-4 bg-dark hover:bg-gold text-white font-bold tracking-widest text-sm uppercase rounded-xl transition-all duration-500 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(201,162,39,0.5)] group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none">
-                    Confirm Your Order
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
+                {/* 4. Payment Breakdown Validation */}
+                <div className="bg-gray-50/70 p-6 md:p-8 rounded-2xl border border-gray-100 shadow-inner">
+                   <h4 className="text-[11px] md:text-xs font-bold tracking-widest uppercase text-dark mb-5 border-b border-gray-200 pb-3 flex items-center gap-2">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                       <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                     </svg>
+                     Order Summary
+                   </h4>
+                   <div className="space-y-4 mb-6">
+                       <div className="flex justify-between text-sm text-gray-500 font-medium">
+                          <span>Actual Amount ({checkoutItems.length} items)</span>
+                          <span className="text-gray-400 line-through">{formatCurrency(actualItemsTotal)}</span>
+                       </div>
+                       
+                       
+                       <div className="flex justify-between text-sm text-gray-500 font-medium">
+                          <span>Shipping Charge</span>
+                          <span>{shippingCharge === 0 ? <span className=" font-bold tracking-widest text-[10px] uppercase px-2 py-1 rounded">Free</span> : <span className="text-dark font-semibold">{formatCurrency(shippingCharge)}</span>}</span>
+                       </div>
+                       
+                       {paymentMode === 'Cash On Delivery' && (
+                  <div className="flex justify-between text-sm text-gray-500 font-medium animate-[fadeIn_0.3s_ease-out]">
+                             <span>COD Handling Charge</span>
+                             <span className="font-bold">+{formatCurrency(codCharge)}</span>
+                          </div>
+                       )}
+                       {discount > 0 && (
+                  <div className="flex justify-between text-gray-500 text-sm font-medium">
+                             <span>Pitchico Deal Saving</span>
+                             <span className="font-bold">-{formatCurrency(discount)}</span>
+                          </div>
+                       )}
+                       
+                       <div className="flex justify-between  text-sm text-dark font-semibold pt-2 mt-2 border-t border-gray-100 border-dashed">
+                          <span>Offer Subtotal</span>
+                          <span>{formatCurrency(itemsTotal)}</span>
+                       </div>
+
+                   </div>
+                   <div className="flex justify-between items-center pt-5 border-t border-gray-200">
+                     <span className="text-base md:text-lg font-bold text-dark tracking-wide">Grand Total</span>
+                     <div className="text-right">
+                       <div className="text-xl md:text-2xl font-bold text-gold">{formatCurrency(checkoutTotal)}</div>
+                       <div className="text-[9px] text-gray-400 uppercase tracking-widest mt-1">Includes all taxes</div>
+                     </div>
+                   </div>
+                </div>
+
+                <div className="pt-2">
+                  <button type="submit" disabled={checkoutStep === 'success' || isProcessing} className="w-full flex items-center justify-center gap-3 py-4 md:py-4 bg-dark hover:bg-gold text-white font-bold tracking-widest text-sm uppercase rounded-xl transition-all duration-500 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(201,162,39,0.5)] group disabled:opacity-80 disabled:cursor-wait disabled:hover:translate-y-0 disabled:hover:shadow-none">
+                    {isProcessing ? (
+                      <div className="flex items-center gap-3">
+                        <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span>Processing Vault...</span>
+                      </div>
+                    ) : (
+                      <>
+                        <span>Confirm Order - {formatCurrency(checkoutTotal)}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </>
+                    )}
                   </button>
                 </div>
               </form>

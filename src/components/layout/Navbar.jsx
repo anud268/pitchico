@@ -27,7 +27,9 @@ export default function Navbar({ isScrolled }) {
           <a href="/" className="text-sm font-medium tracking-widest uppercase text-dark hover:text-gold transition-colors">Home</a>
           <a href="/#mission" className="text-sm font-medium tracking-widest uppercase text-dark hover:text-gold transition-colors">Our Mission</a>
           <Link to="/products" className="text-sm font-medium tracking-widest uppercase text-dark hover:text-gold transition-colors">All Products</Link>
-          <a href="/#values" className="text-sm font-medium tracking-widest uppercase text-dark hover:text-gold transition-colors">Values</a>
+          <a href="https://wa.me/919778167652?text=Hello%20Pitchico%20Team!%20I%20need%20some%20assistance%20with%20my%20shopping." target="_blank" rel="noopener noreferrer" className="text-sm font-medium tracking-widest uppercase text-dark hover:text-gold transition-colors flex items-center gap-1.5">
+            Help
+          </a>
           
           <button 
             onClick={() => setIsCartOpen(true)}
@@ -77,7 +79,9 @@ export default function Navbar({ isScrolled }) {
             <a href="/" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-display font-bold tracking-widest uppercase text-dark hover:text-gold transition-colors">Home</a>
             <a href="/#mission" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-display font-bold tracking-widest uppercase text-dark hover:text-gold transition-colors">Our Mission</a>
             <Link to="/products" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-display font-bold tracking-widest uppercase text-dark hover:text-gold transition-colors">All Products</Link>
-            <a href="/#values" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-display font-bold tracking-widest uppercase text-dark hover:text-gold transition-colors">Values</a>
+            <a href="https://wa.me/919778167652?text=Hello%20Pitchico%20Team!%20I%20need%20some%20assistance%20with%20my%20shopping." target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-display font-bold tracking-widest uppercase text-dark hover:text-gold transition-colors flex items-center gap-2">
+              Help
+            </a>
           </div>
         </div>
       </div>
