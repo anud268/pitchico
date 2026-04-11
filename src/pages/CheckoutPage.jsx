@@ -55,11 +55,22 @@ export default function CheckoutPage() {
 
   const handleCheckoutSubmit = async (e) => {
     e.preventDefault();
+
+    if (checkoutItems.length === 0) {
+      showToast("Your cart is empty. Please add items to proceed.");
+      return;
+    }
+
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
-    if (!data.name || !data.email || !data.phone || !data.address || !data.city || !data.pincode || !paymentMode) {
-      showToast("Please fill all required fields");
+    if (!data.name || !data.email || !data.phone || !data.address || !data.city || !data.pincode) {
+      showToast("Missing information! Please complete your shipping details.");
+      return;
+    }
+
+    if (!paymentMode) {
+      showToast("Please choose a payment method to confirm your order.");
       return;
     }
 
@@ -159,13 +170,13 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen pt-24 md:pt-32 pb-24 px-4 md:px-12 flex justify-center bg-ivory animate-[fadeIn_0.5s_ease-out]">
       <div className="w-full max-w-xl">
-        <button onClick={() => navigate(-1)} className="mb-6 md:mb-8 text-gray-500 hover:text-gold flex items-center gap-2 transition-colors uppercase tracking-widest text-[10px] md:text-xs font-semibold">
+        <button onClick={() => navigate(-1)} className="hidden mb-6 md:mb-8 text-gray-500 hover:text-gold md:flex items-center gap-2 transition-colors uppercase tracking-widest text-[10px] md:text-xs font-semibold">
           <span>&larr;</span> Back
         </button>
 
         <div className={`bg-white p-6 md:p-10 rounded-2xl md:rounded-[2rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] transition-all duration-500 ${checkoutStep === "success" ? "filter blur-sm opacity-50 pointer-events-none" : ""}`}>
               <div className="text-center mb-8 md:mb-10">
-                <h3 className="text-3xl md:text-4xl font-display font-bold text-dark mb-2">Secure Acquisition</h3>
+                <h3 className="text-3xl md:text-4xl font-display font-bold text-dark mb-2">Complete Your Order</h3>
                 <p className="text-gray-500 mb-4 text-sm md:text-base">
                   {checkoutItems.length === 1 ? checkoutItems[0].product.name : `${checkoutItems.length} items in your order`}
                 </p>
@@ -221,21 +232,36 @@ export default function CheckoutPage() {
                 {/* Payment Information */}
                 <div>
                   <h4 className="text-[11px] md:text-xs font-bold tracking-widest uppercase text-gold mb-3 md:mb-4 border-b border-gray-100 pb-2">3. Payment</h4>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1.5 ml-1">Select Payment Method</label>
-                      <div className="relative">
-                        <select name="paymentMethod" required value={paymentMode} onChange={(e) => setPaymentMode(e.target.value)} className="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all text-sm text-dark appearance-none cursor-pointer shadow-sm hover:border-gray-300">
-                          <option value="" disabled>Select Payment Method</option>
-                          <option value="Cash On Delivery">Cash On Delivery</option>
-                          <option value="Prepaid">Prepaid</option>
-                        </select>
-                        <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  <div className="space-y-3">
+                    <label className="block text-[10px] md:text-xs font-semibold tracking-widest text-gray-400 uppercase mb-2 ml-1">Select Payment Method</label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {/* Prepaid Radio Card */}
+                      <label className={`relative flex flex-col p-4 border rounded-xl cursor-pointer hover:border-gold/50 transition-all ${paymentMode === 'Prepaid' ? 'border-gold bg-gold/5 shadow-sm' : 'border-gray-200 bg-gray-50/50'}`}>
+                        <div className="flex items-center justify-between mb-1.5">
+                          <div className="flex items-center gap-3">
+                            <input type="radio" name="paymentMethod" value="Prepaid" required checked={paymentMode === 'Prepaid'} onChange={(e) => setPaymentMode(e.target.value)} className="w-4 h-4 text-gold focus:ring-gold border-gray-300 pointer-events-none" />
+                            <span className="font-bold text-sm text-dark tracking-wide">Prepaid (UPI / Cards)</span>
+                          </div>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className={`w-5 h-5 ${paymentMode === 'Prepaid' ? 'text-gold' : 'text-gray-400'}`}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                           </svg>
                         </div>
-                      </div>
+                        <span className="text-[11px] text-green-600 font-semibold ml-7 tracking-wide">Most Secure • Free Delivery</span>
+                      </label>
+
+                      {/* COD Radio Card */}
+                      <label className={`relative flex flex-col p-4 border rounded-xl cursor-pointer hover:border-gold/50 transition-all ${paymentMode === 'Cash On Delivery' ? 'border-gold bg-gold/5 shadow-sm' : 'border-gray-200 bg-gray-50/50'}`}>
+                        <div className="flex items-center justify-between mb-1.5">
+                          <div className="flex items-center gap-3">
+                            <input type="radio" name="paymentMethod" value="Cash On Delivery" required checked={paymentMode === 'Cash On Delivery'} onChange={(e) => setPaymentMode(e.target.value)} className="w-4 h-4 text-gold focus:ring-gold border-gray-300 pointer-events-none" />
+                            <span className="font-bold text-sm text-dark tracking-wide">Cash On Delivery</span>
+                          </div>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className={`w-5 h-5 ${paymentMode === 'Cash On Delivery' ? 'text-gold' : 'text-gray-400'}`}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                          </svg>
+                        </div>
+                        <span className="text-[11px] text-gray-400 font-medium ml-7 tracking-wide">+Rs. 70 standard handling charge.</span>
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -257,7 +283,7 @@ export default function CheckoutPage() {
                        
                        <div className="flex justify-between text-sm text-gray-500 font-medium">
                           <span>Shipping Charge</span>
-                          <span>{shippingCharge === 0 ? <span className=" font-bold tracking-widest text-[10px] uppercase px-2 py-1 rounded">Free</span> : <span className="text-dark font-semibold">{formatCurrency(shippingCharge)}</span>}</span>
+                          <span>{shippingCharge === 0 ? <span className=" font-bold tracking-widest text-[12px] uppercase px-2 py-1 rounded">Free</span> : <span className="text-dark font-semibold">{formatCurrency(shippingCharge)}</span>}</span>
                        </div>
                        
                        {paymentMode === 'Cash On Delivery' && (
@@ -300,7 +326,7 @@ export default function CheckoutPage() {
                       </div>
                     ) : (
                       <>
-                        <span>Confirm Order - {formatCurrency(checkoutTotal)}</span>
+                        <span>Confirm Order : {formatCurrency(checkoutTotal)}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
