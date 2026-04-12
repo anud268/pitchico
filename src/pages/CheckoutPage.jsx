@@ -7,6 +7,7 @@ import { useCart } from '../context/CartContext';
 
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://pitchico-backend.onrender.com';
+// const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 export default function CheckoutPage() {
   const { id } = useParams();
@@ -91,6 +92,7 @@ export default function CheckoutPage() {
         const dataRes = await res.json();
         
         if (!dataRes.success) {
+          setIsProcessing(false);
           showToast("Payment Server Unavailable. Try again.");
           return;
         }
