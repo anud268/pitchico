@@ -121,7 +121,6 @@ export default function CheckoutPage() {
             color: "#1a1a1a"
           }
         };
-
         const rzp = new window.Razorpay(options);
         rzp.on('payment.failed', function (response){
            setIsProcessing(false);
