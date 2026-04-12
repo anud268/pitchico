@@ -34,7 +34,6 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    // Dynamically load Razorpay SDK for UPI
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
