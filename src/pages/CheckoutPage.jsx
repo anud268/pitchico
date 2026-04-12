@@ -28,7 +28,7 @@ export default function CheckoutPage() {
   const itemsTotal = checkoutItems.reduce((total, item) => total + (item.product.price * item.quantity), 0);
   const discount = actualItemsTotal > itemsTotal ? actualItemsTotal - itemsTotal : 0;
   
-  const shippingCharge = 0; // Free shipping by default
+  const shippingCharge = 0; 
   const codCharge = paymentMode === 'Cash On Delivery' ? 70 : 0;
   const checkoutTotal = actualItemsTotal + shippingCharge + (Math.abs(codCharge) - Math.abs(discount));
 
