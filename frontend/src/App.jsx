@@ -6,7 +6,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import CartDrawer from './components/layout/CartDrawer';
 import { CartProvider } from './context/CartContext';
-
+ 
 // Pages
 import Home from './pages/Home';
 import ProductPage from './pages/ProductPage';
